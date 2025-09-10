@@ -1,0 +1,83 @@
+:root {
+  /* -------- COLORS -------- */
+  --color-page-bg: #333333;
+  --color-container-bg: #1e1e1e;
+  --color-text: #ffffff;
+
+  --color-button-bg: red;
+  --color-button-bg-hover: darkred;
+  --color-button-text: black;
+  --color-button-text-hover: white;
+  --color-button-border: black;
+
+  /* -------- TYPOGRAPHY -------- */
+  --font-family-base: "Arial", sans-serif;
+
+  --font-size-title: 2rem;
+  --font-size-text: 1rem;
+  --font-size-button: 1.2rem;
+
+  /* -------- SPACING -------- */
+  --spacing-container-padding: 2rem;
+  --spacing-title-margin-bottom: 1.5rem;
+  --spacing-text-margin-bottom: 2rem;
+  --button-padding-y: 0.8rem;
+  --button-padding-x: 2rem;
+
+  /* -------- BORDER RADIUS -------- */
+  --radius-container: 4px;
+
+  /* -------- ANIMATION -------- */
+  --transition-speed: 0.2s;
+
+  /* -------- CARDS -------- */
+  --card-bg-color: #ffffff;
+  --card-border-color: #000000;
+  --card-border-width: 3px;
+  --card-border-radius: 8px;
+
+  --card-font-family: var(--font-family-base);
+  --card-font-size: var(--font-size-text);
+  --card-font-color: #000000;
+
+  --card-padding: 1rem;
+
+  /* -------- PLAYERS -------- */
+  --player-bg-color: var(--color-container-bg);
+  --player-border-color: var(--card-border-color);
+  --player-border-width: 2px;
+  --player-border-radius: var(--radius-container);
+
+  --player-font-family: var(--font-family-base);
+  --player-font-size: var(--font-size-text);
+  --player-font-color: var(--color-text);
+
+  --player-padding: var(--spacing-container-padding);
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+button {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-button);
+  color: var(--color-button-text);
+  background-color: var(--color-button-bg);
+  border: 2px solid var(--color-button-border);
+  border-radius: var(--radius-container);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  cursor: pointer;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+}

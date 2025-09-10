@@ -1,0 +1,39 @@
+/* Container box */
+.welcome-container {
+  background-color: var(--color-container-bg);
+  color: var(--color-text);
+  padding: var(--spacing-container-padding);
+  max-width: 800px;
+  text-align: center;
+  border-radius: var(--radius-container);
+}
+
+/* Title */
+.welcome-title {
+  font-size: var(--font-size-title);
+  margin-bottom: var(--spacing-title-margin-bottom);
+}
+
+/* Text */
+.welcome-text {
+  font-size: var(--font-size-text);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-text-margin-bottom);
+}
+
+/* Button */
+.welcome-button {
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  font-weight: bold;
+  font-size: var(--font-size-button);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border: 2px solid var(--color-button-border);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+.welcome-button:hover {
+  background-color: var(--color-button-bg-hover);
+  color: var(--color-button-text-hover);
+}
