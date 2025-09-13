@@ -22,8 +22,8 @@ export const selectPlayerHand = createSelector(
 export const selectPlayerStats = createSelector(
     selectPlayerById,
     selectPlayerBoard,
-    (player, cards) => {
-        return cards.reduce((stats, card) => {
+    (player, board) => {
+        return board.reduce((stats, card) => {
             stats.income += card.income
             stats.score += card.score
             stats.pollution += card.pollution

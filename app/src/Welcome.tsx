@@ -1,10 +1,8 @@
 import React from "react";
 import { useAppDispatch } from "./app/hooks"
-import {
-  startPlaying,
-} from "./features/lifecycle/lifecycleSlice"
-import "../../css-components/Page.css"
+import "./css-components/Page.css"
 import "./Welcome.css";
+import { startPlaying } from "./app/gameSlice";
 
 interface WelcomeProps {}
 

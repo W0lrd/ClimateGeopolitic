@@ -116,6 +116,7 @@ export const gameSlice = createAppSlice({
                         player.hand.push(cardId)
                     }
                 }
+                state.status = "over"
             }
         ),
         startPlaying: create.reducer(
