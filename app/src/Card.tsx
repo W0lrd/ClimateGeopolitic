@@ -1,10 +1,12 @@
 import React from "react";
-import type { Card as CardType } from "./cardsSlice"
+import type { Card as CardType } from "./deck"
 import "./Card.css";
+
+export type CardStatus = "yours" | "opponent" | "available" | "not-available"
 
 interface CardProps {
   card: CardType
-  status: "available" | "not-available" | "yours"
+  status: CardStatus
   onClick?: (card: CardType) => void
 }
 

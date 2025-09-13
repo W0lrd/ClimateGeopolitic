@@ -1,12 +1,9 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { combineSlices, configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
-import { lifecycleSlice } from "../features/lifecycle/lifecycleSlice"
-import { cardsSlice } from "../features/cards/cardsSlice"
-import { playersSlice } from "../features/players/playersSlice"
-import { gameSlice } from "../features/game/gameSlice"
+import { gameSlice } from "./gameSlice"
 
-const rootReducer = combineSlices(lifecycleSlice, cardsSlice, playersSlice, gameSlice)
+const rootReducer = combineSlices(gameSlice)
 export type RootState = ReturnType<typeof rootReducer>
 
 // The store setup is wrapped in `makeStore` to allow reuse

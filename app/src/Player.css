@@ -1,4 +1,5 @@
 .player-box {
+    position: relative; /* for player-details positioning */
     display: flex;
     flex-direction: column;
     justify-content: center;   /* horizontal center */
@@ -22,4 +23,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.player-details {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 300%;
 }

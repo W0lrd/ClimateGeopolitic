@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppDispatch } from "../../app/hooks"
+import { useAppDispatch } from "./app/hooks"
 import {
   startPlaying,
-} from "./lifecycleSlice"
+} from "./features/lifecycle/lifecycleSlice"
 import "../../css-components/Page.css"
 import "./Welcome.css";
 

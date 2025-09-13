@@ -1,9 +1,9 @@
 import React from "react"
 import "./App.css"
 import { useAppSelector } from "./app/hooks"
-import { selectStatus } from "./features/lifecycle/lifecycleSlice"
-import Welcome from "./features/lifecycle/Welcome"
-import Game from "./features/game/Game"
+import { selectStatus } from "./app/gameSlice"
+import Welcome from "./Welcome"
+import Game from "./Game"
 
 export const App: React.FC = () => {
   const lifcycleStatus = useAppSelector(selectStatus)

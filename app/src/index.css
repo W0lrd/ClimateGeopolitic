@@ -31,6 +31,7 @@
   --transition-speed: 0.2s;
 
   /* -------- CARDS -------- */
+  --card-size: 12rem;
   --card-bg-color: #ffffff;
   --card-border-color: #000000;
   --card-border-width: 3px;
