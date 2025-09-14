@@ -2,7 +2,7 @@ import React from "react";
 import type { Card as CardType } from "./deck"
 import "./Card.css";
 
-export type CardStatus = "yours" | "opponent" | "available" | "not-available"
+export type CardStatus = "board" | "available" | "not-available"
 
 interface CardProps {
   card: CardType
@@ -12,7 +12,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ card, status, onClick }) => {
   return (
-    <div className={`card-box ${status}`} onClick={() => onClick && onClick(card)}>
+    <div className={`card-box ${status}`} onClick={() => onClick && status === 'available' ? onClick(card): null}>
       <div className="card-name">{card.name}</div>
       <div className="card-stats">
         <div>Coût: {card.cost}</div>

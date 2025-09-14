@@ -1,34 +1,64 @@
 .player-box {
-    position: relative; /* for player-details positioning */
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;   /* horizontal center */
-    align-items: center;       /* vertical center */
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    
-    background-color: var(--player-bg-color);
-    border: var(--player-border-width) solid var(--player-border-color);
-    border-radius: var(--player-border-radius);
-    
-    font-family: var(--player-font-family);
-    font-size: var(--player-font-size);
-    color: var(--player-font-color);
-    
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box; /* ensure border+padding stay inside player size */
+    cursor: pointer;
+    flex: 1;
+    min-width: 0;
+
+    background-color: var(--color-container-bg);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-container);
+    padding: var(--spacing-large);
+    margin-right: var(--spacing-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--box-shadow-default);
+
+    font-size: var(--font-size-player);
+    color: var(--color-player-text);
+    box-sizing: border-box;
+}
+
+.player-box:last-child {
+    margin-right: 0;
+}
+
+.player-box.highlighted {
+    background-color: var(--color-highlight-bg);
+    cursor: initial;
+    transform: scale(1.02);
+    box-shadow: var(--box-shadow-highlighted);
+    border-color: var(--color-highlight);
+}
+
+.player-name {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-medium);
+    text-align: center;
 }
 
 .player-stats {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: var(--spacing-medium);
+    font-size: var(--font-size-text);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-medium);
+    width: 100%;
 }
 
-.player-details {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    width: 300%;
+.player-stat {
+    flex: 1;
+    text-align: center;
+    font-size: var(--font-size-text);
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
 }

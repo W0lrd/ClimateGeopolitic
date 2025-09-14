@@ -1,21 +1,46 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url('./fonts/Open_Sans/static/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* -------- COLORS -------- */
-  --color-page-bg: #333333;
-  --color-container-bg: #1e1e1e;
-  --color-text: #ffffff;
+  --color-page-bg: #121212; /* Black background */
+  --color-container-bg: #1e1e1e; /* Dark grey for containers */
+  --color-border: #444444; /* Subtle grey border */
+  --color-highlight: rgb(255, 0, 106); /* Primary highlight (pink) */
+  --color-highlight-bg: rgba(255, 0, 106, 0.1); /* Highlight background */
+  --color-highlight-secondary: rgb(0, 139, 93); /* Secondary highlight (green) */
+  --color-highlight-secondary-bg: rgba(0, 139, 93, 0.1); /* Secondary highlight background */
+  --color-text: #e0e0e0; /* Light grey text */
+  --color-text-muted: #b0b0b0; /* Muted grey text */
+  --color-details-bg: #2a2a2a; /* Slightly lighter grey for details */
+  --color-subtitle-bg: #000000; /* Black subtitle background */
+  --color-subtitle-text: rgb(255, 0, 106); /* Pink subtitle text */
+  --color-overlay-bg: rgba(0, 0, 0, 0.6); /* Darker overlay background */
 
-  --color-button-bg: red;
-  --color-button-bg-hover: darkred;
-  --color-button-text: black;
-  --color-button-text-hover: white;
-  --color-button-border: black;
+  --color-button-bg: rgb(255, 0, 106); /* Pink button background */
+  --color-button-bg-hover: rgb(0, 139, 93); /* Green button hover background */
+  --color-button-text: #ffffff; /* White button text */
+  --color-button-text-hover: #000000; /* Black button text on hover */
+  --color-button-border: #444444; /* Grey button border */
+
+  --color-stat-bg: #333333; /* Dark grey for stat boxes */
 
   /* -------- TYPOGRAPHY -------- */
-  --font-family-base: "Arial", sans-serif;
+  --font-family-base: "Open Sans", sans-serif;
 
-  --font-size-title: 2rem;
-  --font-size-text: 1rem;
+  --font-size-title: 1.6rem;
+  --font-size-subtitle: 1.5rem;
+  --font-size-text: 1rem; /* Updated font size */
+  --font-size-player: 1rem;
   --font-size-button: 1.2rem;
+  --font-size-small: 0.8rem;
+
+  --font-weight-bold: bold;
+  --font-weight-regular: 400; /* Added font weight */
 
   /* -------- SPACING -------- */
   --spacing-container-padding: 2rem;
@@ -24,24 +49,45 @@
   --button-padding-y: 0.8rem;
   --button-padding-x: 2rem;
 
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 1.5rem;
+
   /* -------- BORDER RADIUS -------- */
-  --radius-container: 4px;
+  --radius-container: 8px;
+
+  /* -------- BORDER WIDTH -------- */
+  --border-width: 1px; /* Updated border width */
+
+  /* -------- BOX SHADOW -------- */
+  --box-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --box-shadow-highlighted: 0 6px 10px rgba(0, 0, 0, 0.3);
 
   /* -------- ANIMATION -------- */
-  --transition-speed: 0.2s;
+  --transition-speed: 0.3s;
 
   /* -------- CARDS -------- */
-  --card-size: 12rem;
-  --card-bg-color: #ffffff;
-  --card-border-color: #000000;
-  --card-border-width: 3px;
+  --card-size: 150px;
+  --card-bg-color: #1e1e1e; /* Match container background */
+  --card-border-color: #444444; /* Grey border for cards */
+  --card-border-width: 2px;
   --card-border-radius: 8px;
 
-  --card-font-family: var(--font-family-base);
-  --card-font-size: var(--font-size-text);
-  --card-font-color: #000000;
+  --card-font-family: Arial, sans-serif;
+  --card-font-size: 1rem;
+  --card-font-color: #e0e0e0; /* Light grey text */
 
   --card-padding: 1rem;
+
+  --card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --card-box-shadow-hover: 0 6px 10px rgba(0, 0, 0, 0.3);
+
+  --card-opacity-disabled: 0.5;
+
+  --card-stats-bg-color: rgba(0, 0, 0, 0.8);
+  --card-stats-margin: 1rem;
+  --card-stats-font-size: 0.9rem;
+  --card-stats-font-color: #ffffff;
 
   /* -------- PLAYERS -------- */
   --player-bg-color: var(--color-container-bg);
@@ -49,18 +95,40 @@
   --player-border-width: 2px;
   --player-border-radius: var(--radius-container);
 
-  --player-font-family: var(--font-family-base);
   --player-font-size: var(--font-size-text);
   --player-font-color: var(--color-text);
 
   --player-padding: var(--spacing-container-padding);
+
+  --player-card-min-width: 220px;
+  --players-max-width: 1000px;
+
+  --opacity-muted: 0.8;
+
+  /* -------- DETAILS -------- */
+  --details-width: 300%;
+
+  /* -------- GAME LAYOUT -------- */
+  --game-left-width: 80%; /* Width of the left column */
+  --game-right-width: 20%; /* Width of the right column */
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-page-bg);
+  color: var(--color-text);
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
 }
 
 body {
   margin: 0;
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    var(--font-family-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -81,4 +149,9 @@ button {
   cursor: pointer;
   transition: background-color var(--transition-speed),
     color var(--transition-speed);
+}
+
+button:hover {
+  background-color: var(--color-button-bg-hover);
+  color: var(--color-button-text-hover);
 }

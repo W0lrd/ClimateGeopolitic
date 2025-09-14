@@ -2,61 +2,60 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--color-page-bg, #333333);
-    color: var(--color-text, #ffffff);
+    background-color: var(--color-page-bg);
+    color: var(--color-text);
     min-height: 100vh;
-    padding: 2rem;
-  }
-  
-  .gameover-title {
-    font-size: var(--font-size-title, 2rem);
+    padding: var(--spacing-large);
+}
+
+.gameover-title {
+    font-size: var(--font-size-title);
     font-weight: bold;
-    border: 2px solid var(--color-text, #ffffff);
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
+    border: var(--border-width) solid var(--color-text);
+    padding: var(--spacing-medium) var(--spacing-large);
+    margin-bottom: var(--spacing-medium);
     text-align: center;
-  }
-  
-  .gameover-subtitle {
-    background-color: #000;
-    color: red;
-    font-size: 1.5rem;
+}
+
+.gameover-subtitle {
+    background-color: var(--color-subtitle-bg);
+    color: var(--color-subtitle-text);
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
-    padding: 0.5rem 1.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .gameover-players {
+    padding: var(--spacing-medium) var(--spacing-large);
+    margin-bottom: var(--spacing-large);
+}
+
+.gameover-players {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(var(--player-card-min-width), 1fr));
+    gap: var(--spacing-large);
     width: 100%;
-    max-width: 1000px;
-  }
-  
-  .gameover-player {
-    background-color: var(--color-container-bg, #1e1e1e);
-    padding: 1rem;
-    border-radius: var(--radius-container, 4px);
+    max-width: var(--players-max-width);
+}
+
+.gameover-player {
+    background-color: var(--color-container-bg);
+    padding: var(--spacing-large);
+    border-radius: var(--radius-container);
     text-align: center;
-  }
-  
-  .gameover-player-name {
-    font-size: var(--font-size-text, 1rem);
+}
+
+.gameover-player-name {
+    font-size: var(--font-size-text);
     font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .gameover-player-you {
+    margin-bottom: var(--spacing-small);
+}
+
+.gameover-player-you {
     font-style: italic;
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
-    color: var(--color-text, #ffffff);
-    opacity: 0.8;
-  }
-  
-  .gameover-player-total {
+    font-size: var(--font-size-small);
+    margin-left: var(--spacing-small);
+    color: var(--color-text);
+    opacity: var(--opacity-muted);
+}
+
+.gameover-player-total {
     font-weight: bold;
-    margin-top: 0.5rem;
-  }
-  
+    margin-top: var(--spacing-small);
+}

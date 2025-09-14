@@ -1,9 +1,8 @@
 .card-box {
   position: relative;
   display: flex;
-
-  justify-content: center;   /* horizontal center */
-  align-items: center;       /* vertical center */
+  justify-content: center; /* Horizontal center */
+  align-items: center; /* Vertical center */
   text-align: center;
 
   background-color: var(--card-bg-color);
@@ -17,15 +16,20 @@
   padding: var(--card-padding);
   width: var(--card-size);
   height: var(--card-size);
-  box-sizing: border-box; /* ensure border+padding stay inside card size */
+  box-sizing: border-box; /* Ensure border + padding stay inside card size */
+
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  box-shadow: var(--card-box-shadow);
 }
 
 .card-box.available {
   cursor: pointer;
+  transform: scale(1.02);
+  box-shadow: var(--card-box-shadow-hover);
 }
 
 .card-box.not-available {
-  opacity: 0.5;
+  opacity: var(--card-opacity-disabled);
   cursor: not-allowed;
 }
 
@@ -42,11 +46,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background-color: var(--card-bg-color);
+  background-color: var(--card-stats-bg-color);
+  border-radius: var(--card-border-radius);
 }
 
 .card-stats > div {
-  margin-left: 1rem;
+  margin-left: var(--card-stats-margin);
+  font-size: var(--card-stats-font-size);
+  color: var(--card-stats-font-color);
 }
 
 .card-box:hover .card-stats {

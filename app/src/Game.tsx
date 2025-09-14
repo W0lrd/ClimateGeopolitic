@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useAppDispatch } from "./app/hooks"
 import Card from "./Card"
-import { selectGlobalPollution, selectPlayerBoard, selectPlayerHand, selectPlayerStats } from "./selectors"
-import { selectPlayers, endTurn, selectTurnOfPlayerId, YOUR_PLAYER_ID, selectPlayerById } from "./app/gameSlice";
+import { selectPlayers, endTurn, selectTurnOfPlayerId, YOUR_PLAYER_ID, selectPlayerById, selectGlobalPollution, selectRound, selectPlayerBoard, selectPlayerHand, selectPlayerHovered } from "./app/gameSlice";
 import { takeCard } from "./app/gameSlice";
 import Player from "./Player";
 import { useAppSelector } from "./app/hooks"
@@ -18,13 +17,15 @@ interface GameProps {}
 
 const Game: React.FC<GameProps> = () => {
   const dispatch = useAppDispatch()
+  const playerHovered = useAppSelector(selectPlayerHovered)
   const yourHand = useAppSelector(state => selectPlayerHand(state, YOUR_PLAYER_ID))
-  const yourBoard = useAppSelector(state => selectPlayerBoard(state, YOUR_PLAYER_ID))
-  const yourStats = useAppSelector(state => selectPlayerStats(state, YOUR_PLAYER_ID))
+  const board = useAppSelector(state => selectPlayerBoard(state, playerHovered !== null ? playerHovered.id : YOUR_PLAYER_ID))
   const turnOfPlayerId = useAppSelector(selectTurnOfPlayerId)
   const players = useAppSelector(selectPlayers)
   const globalPollution = useAppSelector(selectGlobalPollution)
+  const round = useAppSelector(selectRound)
   const currentPlayer = useAppSelector(state => selectPlayerById(state, turnOfPlayerId))
+  const you = useAppSelector(state => selectPlayerById(state, YOUR_PLAYER_ID))
   const cardToTake = useBuyCardsAI(currentPlayer)
 
   const onCardClick = (card: CardType) => {
@@ -62,25 +63,31 @@ const Game: React.FC<GameProps> = () => {
         </div>
       )}
       <div className="game-left">
-        <div className="game-players">
-          {players.map(player => (
-            <Player key={player.id} player={player} />
-          ))}
+        <div className="game-players-board">
+          <div className="game-players">
+            {players.map(player => (
+              <Player key={player.id} player={player} />
+            ))}
+          </div>
+          <GameBoard cards={board} />
         </div>
-        <GameBoard cards={yourBoard} status="yours" />
         <div className="game-hand">
           <div className="game-hand-inner">
+            {
+              playerHovered && playerHovered.id !== YOUR_PLAYER_ID && <div className="game-hand-overlay"></div>
+            }
             {yourHand.map(card => (
-              <Card key={card.id} card={card} onClick={onCardClick} status={yourStats.balance >= card.cost ? "available": "not-available"} />
+              <Card key={card.id} card={card} onClick={onCardClick} status={currentPlayer.balance >= card.cost ? "available": "not-available"} />
             ))}
           </div>
         </div>
       </div>
       <div className="game-right">
         <div className="game-stats">
+          <div className="game-stat game-round">Tour: {round}</div>
           <div className="game-stat game-global-pollution">Pollution Globale: {globalPollution}</div>
-          <div className="game-stat game-your-balance">Votre Argent: {yourStats.balance}</div>
-          <div className="game-stat game-your-score">Votre Score: {yourStats.score}</div>
+          <div className="game-stat game-your-balance">Votre Argent: {you.balance}</div>
+          <div className="game-stat game-your-score">Votre Score: {you.score}</div>
         </div>
         <div className="game-end-turn" onClick={onEndTurnClick}>
           <button>Fin du tour</button>

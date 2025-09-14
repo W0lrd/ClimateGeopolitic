@@ -1,43 +1,38 @@
-import React, { useState } from "react";
-import "./Player.css";
-import { YOUR_PLAYER_ID, type Player as PlayerType } from "./app/gameSlice";
-import { useAppSelector } from "./app/hooks";
-import { selectPlayerBoard, selectPlayerStats } from "./selectors";
-import GameBoard from "./GameBoard";
+import React from 'react'
+import './Player.css'
+import { computeIncome, selectPlayerHovered, setPlayerHoveredId, YOUR_PLAYER_ID, type Player as PlayerType } from './app/gameSlice'
+import { useAppDispatch, useAppSelector } from './app/hooks'
 
 interface PlayerProps {
-  player: PlayerType
+    player: PlayerType
 }
 
 const Player: React.FC<PlayerProps> = ({ player }) => {
-    const playerStats = useAppSelector((state) => selectPlayerStats(state, player.id))
-    const playerBoard = useAppSelector(state => selectPlayerBoard(state, player.id))
-    const [isMouseOver, setIsMouseOver] = useState(false)
+    const dispatch = useAppDispatch()
+    const playerHovered = useAppSelector(selectPlayerHovered)
 
-    const onMouseOver = () => {
-        setIsMouseOver(true)
-    }
-
-    const onMouseOut = () => {
-        setIsMouseOver(false)
+    const onClick = () => {
+        dispatch(setPlayerHoveredId(player.id))
     }
 
     return (
-        <div className="player-box" onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
-            <div className="player-name">{player.name}{player.id !== YOUR_PLAYER_ID ? ` (${player.strategy})`: ` (you)`}</div>
-            <div className="player-stats">
-                <div>Revenu: {playerStats.income}</div>
-                <div>Score: {playerStats.score}</div>
-                <div>Pollution: {playerStats.pollution}</div>
+        <div
+            className={`player-box ${(playerHovered && player.id === playerHovered.id) || (playerHovered === null && player.id === YOUR_PLAYER_ID) ? 'highlighted' : ''}`}
+            onClick={onClick}
+        >
+            <div className="player-name">
+                {player.name}
+                {player.id !== YOUR_PLAYER_ID
+                    ? ` (${player.strategy})`
+                    : ` (you)`}
             </div>
-            {isMouseOver && player.id !== YOUR_PLAYER_ID && (
-                <div className="player-details">
-                    <GameBoard cards={playerBoard} status="opponent" />
-                </div>
-            )}
+            <div className="player-stats">
+                <div className='player-stat'><span>Revenu:</span><span>{computeIncome(player)}</span></div>
+                <div className='player-stat'><span>Score:</span><span>{player.score}</span></div>
+                <div className='player-stat'><span>Pollution:</span><span>{player.pollution}</span></div>
+            </div>
         </div>
-    );
+    )
 }
 
-
-export default Player;
+export default Player

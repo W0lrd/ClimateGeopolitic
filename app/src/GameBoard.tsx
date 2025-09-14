@@ -1,18 +1,19 @@
 import React from 'react'
 import type { Card as CardType } from "./deck"
-import Card, { CardStatus } from './Card'
+import Card from './Card'
 import "./GameBoard.css"
 
 interface GameBoardProps {
     cards: Array<CardType>
-    status: CardStatus
 }
 
-const GameBoard: React.FC<GameBoardProps> = ({ cards, status }) => {
+const GameBoard: React.FC<GameBoardProps> = ({ cards }) => {
     return (
-        <div className="game-board">
-            {cards.map(card => (
-                <Card key={card.id} card={card} status={status} />
+        <div className={`game-board ${cards.length === 0 ? 'empty': ''}`}>
+            {cards.length === 0 ? (
+                <p>Aucun carte sur le plateau</p>
+            ) : cards.map(card => (
+                <Card key={card.id} card={card} status="board" />
             ))}
         </div>
     );

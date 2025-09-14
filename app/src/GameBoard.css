@@ -1,7 +1,17 @@
 .game-board {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--card-size), 1fr));
-    gap: 1rem;
-    padding: 1rem;
+    gap: var(--spacing-medium);
+    padding: var(--spacing-medium);
     width: 100%;
+
+    background-color: var(--color-highlight-bg); /* Match highlighted background */
+    box-shadow: var(--box-shadow-highlighted); /* Match highlighted box shadow */
+    color: var(--color-text);
+}
+
+.game-board.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

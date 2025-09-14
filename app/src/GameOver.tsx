@@ -2,17 +2,13 @@ import React from "react";
 import "./GameOver.css";
 import "./css-components/Page.css"
 import { useAppSelector } from "./app/hooks";
-import { selectGlobalPollution, selectPlayerStats } from "./selectors";
-import { selectPlayers, YOUR_PLAYER_ID } from "./app/gameSlice";
+import { computeIncome, computePollutionIncome, computeScoreIncome, selectGlobalPollution, selectPlayers, YOUR_PLAYER_ID } from "./app/gameSlice";
 
 interface GameOverProps {}
 
 const GameOver: React.FC<GameOverProps> = () => {
     const globalPollution = useAppSelector(selectGlobalPollution)
     const players = useAppSelector(selectPlayers)
-    const playersStats = useAppSelector((state) =>
-        players.map((player) => selectPlayerStats(state, player.id))
-    );
 
   return (
     <div className="gameover-page Page">
@@ -29,16 +25,16 @@ const GameOver: React.FC<GameOverProps> = () => {
               )}
             </h2>
 
-            <p>Revenu par tour : {playersStats[i].income}</p>
-            <p>Score par tour : {playersStats[i].score}</p>
-            <p>Pollution par tour : {playersStats[i].pollution}</p>
+            <p>Revenu par tour : {computeIncome(players[i])}</p>
+            <p>Score par tour : {computeScoreIncome(players[i])}</p>
+            <p>Pollution par tour : {computePollutionIncome(players[i])}</p>
 
-            {/* <p className="gameover-player-total">
-              Score total : {player.totalScore}
+            <p className="gameover-player-total">
+              Score total : {player.score}
             </p>
             <p className="gameover-player-total">
-              Pollution totale : {player.totalPollution}
-            </p> */}
+              Pollution totale : {player.pollution}
+            </p>
           </div>
         ))}
       </div>

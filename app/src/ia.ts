@@ -1,7 +1,6 @@
 import { useAppSelector } from './app/hooks'
-import { Player, YOUR_PLAYER_ID } from './app/gameSlice'
+import { Player, selectGlobalPollution, YOUR_PLAYER_ID } from './app/gameSlice'
 import { Card, findCards } from './deck'
-import { selectGlobalPollution } from './selectors'
 
 export type Strategy = 'greedy' | 'eco' | 'reactive' | 'balanced'
 
@@ -17,7 +16,7 @@ export const useBuyCardsAI = (
     if (player.id === YOUR_PLAYER_ID) {
         return null
     }
-    
+
     const affordableCards = _affordableCards(player)
     if (player.strategy === 'greedy') {
         affordableCards.sort((a, b) => b.income - a.income)
