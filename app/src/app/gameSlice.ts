@@ -1,16 +1,17 @@
-import { createAppSlice } from './createAppSlice'
-import type { Card, CardId } from '../deck'
-import { DECK, findCards } from '../deck'
-import { Strategy } from '../ia'
+import { createAppSlice } from './createAppSlice';
+import type { Card, CardId } from '../deck';
+import { DECK, findCards } from '../deck';
+import { Strategy } from '../ia';
+import {
+    INITIAL_BALANCE,
+    DRAW_CARDS_PER_TURN,
+    MAX_GLOBAL_POLLUTION,
+    SIZE_INITIAL_HAND,
+} from './settings';
 
-const INITIAL_BALANCE = 10
-const DRAW_CARDS_PER_TURN = 2
-const MAX_GLOBAL_POLLUTION = 300
-const SIZE_INITIAL_HAND = 8
-
-DECK.sort(() => Math.random() - 0.5) // shuffle deck
-const INITIAL_HAND = DECK.map((c) => c.id).slice(0, SIZE_INITIAL_HAND)
-const INITIAL_DECK = DECK.map((c) => c.id).slice(SIZE_INITIAL_HAND)
+DECK.sort(() => Math.random() - 0.5); // shuffle deck
+const INITIAL_HAND = DECK.map((c) => c.id).slice(0, SIZE_INITIAL_HAND);
+const INITIAL_DECK = DECK.map((c) => c.id).slice(SIZE_INITIAL_HAND);
 
 const AI_STRATEGIES: Array<Strategy> = [
     'greedy',
@@ -65,7 +66,7 @@ const _createAiPlayers = (count: number): Array<Player> => {
     return players
 }
 
-const _findPlayerById = (state: PlayersSliceState, playerId: PlayerId) => {
+export const findPlayerById = (state: PlayersSliceState, playerId: PlayerId) => {
     const player = state.players.find((player) => player.id === playerId)
     if (!player) {
         throw new Error(`Player with id ${playerId} not found`)
@@ -115,7 +116,7 @@ export const gameSlice = createAppSlice({
                 state,
                 action: { payload: { playerId: PlayerId; card: Card } }
             ) => {
-                const player = _findPlayerById(state, action.payload.playerId)
+                const player = findPlayerById(state, action.payload.playerId)
                 player.hand = player.hand.filter(
                     (cardId) => cardId !== action.payload.card.id
                 )
@@ -167,17 +168,13 @@ export const gameSlice = createAppSlice({
     selectors: {
         selectPlayers: (state) => state.players,
         selectPlayerById: (state, playerId: PlayerId) =>
-            _findPlayerById(state, playerId),
+            findPlayerById(state, playerId),
         selectStatus: (state) => state.status,
         selectTurnOfPlayerId: (state) => state.turnOfPlayerId,
         selectRound: (state) => state.round,
         selectGlobalPollution: (state) =>
             _computeGlobalPollution(state.players),
-        selectPlayerBoard: (state, playerId: PlayerId) =>
-            findCards(_findPlayerById(state, playerId).board),
-        selectPlayerHand: (state, playerId: PlayerId) =>
-            findCards(_findPlayerById(state, playerId).hand),
-        selectPlayerHovered: (state) => state.playerHoveredId ? _findPlayerById(state, state.playerHoveredId!): null
+        selectPlayerHovered: (state) => state.playerHoveredId ? findPlayerById(state, state.playerHoveredId!): null
     },
 })
 
@@ -189,7 +186,5 @@ export const {
     selectTurnOfPlayerId,
     selectGlobalPollution,
     selectRound,
-    selectPlayerBoard,
-    selectPlayerHand,
     selectPlayerHovered,
 } = gameSlice.selectors

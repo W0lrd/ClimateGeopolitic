@@ -29,6 +29,10 @@
 
   --color-stat-bg: #333333; /* Dark grey for stat boxes */
 
+  --color-money: #ffd700; /* Gold color for money */
+  --color-score: #00ffff; /* Cyan color for score */
+  --color-pollution: #ff4500; /* OrangeRed color for pollution */
+
   /* -------- TYPOGRAPHY -------- */
   --font-family-base: "Open Sans", sans-serif;
 
@@ -38,6 +42,7 @@
   --font-size-player: 1rem;
   --font-size-button: 1.2rem;
   --font-size-small: 0.8rem;
+  --font-size-game-stat: 1.2rem;
 
   --font-weight-bold: bold;
   --font-weight-regular: 400; /* Added font weight */
@@ -86,8 +91,16 @@
 
   --card-stats-bg-color: rgba(0, 0, 0, 0.8);
   --card-stats-margin: 1rem;
-  --card-stats-font-size: 0.9rem;
+  --card-stats-font-size: 1.5rem;
   --card-stats-font-color: #ffffff;
+  --card-stats-font-weight: bold;
+
+  /* Card Cost Variables */
+  --card-cost-bg-color: #444444; /* Background color for card cost */
+  --card-cost-font-color: #ffffff; /* Font color for card cost */
+  --card-cost-font-size: 0.9rem; /* Font size for card cost */
+  --card-cost-font-weight: bold; /* Font weight for card cost */
+  --card-cost-border-radius: 50%; /* Border radius for card cost */
 
   /* -------- PLAYERS -------- */
   --player-bg-color: var(--color-container-bg);

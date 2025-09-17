@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import './Player.css'
 import { computeIncome, selectPlayerHovered, setPlayerHoveredId, YOUR_PLAYER_ID, type Player as PlayerType } from './app/gameSlice'
 import { useAppDispatch, useAppSelector } from './app/hooks'
@@ -11,9 +11,9 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
     const dispatch = useAppDispatch()
     const playerHovered = useAppSelector(selectPlayerHovered)
 
-    const onClick = () => {
+    const onClick = useCallback(() => {
         dispatch(setPlayerHoveredId(player.id))
-    }
+    }, [dispatch, player.id])
 
     return (
         <div

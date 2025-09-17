@@ -89,12 +89,11 @@
   flex-direction: column;
   gap: var(--spacing-small);
   border-radius: var(--radius-container);
-  box-shadow: var(--box-shadow-default);
   width: 100%;
 }
 
 .game-stat {
-  font-size: var(--font-size-text);
+  font-size: var(--font-size-game-stat);
   font-weight: var(--font-weight-regular);
   color: var(--color-text);
   padding: var(--spacing-small);
@@ -109,4 +108,5 @@
 
 .game-end-turn button {
   width: 100%;
+  height: var(--card-size);
 }

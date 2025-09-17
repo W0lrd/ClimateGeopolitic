@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
-import { useAppDispatch } from "./app/hooks"
+import React, { useEffect, useCallback } from "react";
+import { useAppDispatch, useAppSelector } from "./app/hooks"
 import Card from "./Card"
-import { selectPlayers, endTurn, selectTurnOfPlayerId, YOUR_PLAYER_ID, selectPlayerById, selectGlobalPollution, selectRound, selectPlayerBoard, selectPlayerHand, selectPlayerHovered } from "./app/gameSlice";
+import { selectPlayers, endTurn, selectTurnOfPlayerId, YOUR_PLAYER_ID, selectPlayerById, selectGlobalPollution, selectRound, selectPlayerHovered } from "./app/gameSlice";
 import { takeCard } from "./app/gameSlice";
 import Player from "./Player";
-import { useAppSelector } from "./app/hooks"
+import { shallowEqual } from "react-redux";
 import "./css-components/Page.css"
 import "./Game.css";
 import type { Card as CardType } from "./deck";
 import { useBuyCardsAI } from "./ia";
 import GameBoard from "./GameBoard";
+import { selectPlayerHand, selectPlayerBoard } from "./app/selectors";
 
 const TURN_TIME_MS = 600
 
@@ -21,20 +22,23 @@ const Game: React.FC<GameProps> = () => {
   const yourHand = useAppSelector(state => selectPlayerHand(state, YOUR_PLAYER_ID))
   const board = useAppSelector(state => selectPlayerBoard(state, playerHovered !== null ? playerHovered.id : YOUR_PLAYER_ID))
   const turnOfPlayerId = useAppSelector(selectTurnOfPlayerId)
-  const players = useAppSelector(selectPlayers)
+  const players = useAppSelector(selectPlayers, shallowEqual)
   const globalPollution = useAppSelector(selectGlobalPollution)
   const round = useAppSelector(selectRound)
   const currentPlayer = useAppSelector(state => selectPlayerById(state, turnOfPlayerId))
   const you = useAppSelector(state => selectPlayerById(state, YOUR_PLAYER_ID))
-  const cardToTake = useBuyCardsAI(currentPlayer)
+  const cardToTake = useBuyCardsAI(currentPlayer);
 
-  const onCardClick = (card: CardType) => {
-    dispatch(takeCard({ playerId: YOUR_PLAYER_ID, card }))
-  }
+  const onCardClick = useCallback(
+    (card: CardType) => {
+      dispatch(takeCard({ playerId: YOUR_PLAYER_ID, card }));
+    },
+    [dispatch]
+  );
 
-  const onEndTurnClick = () => {
-    dispatch(endTurn())
-  }
+  const onEndTurnClick = useCallback(() => {
+    dispatch(endTurn());
+  }, [dispatch]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null
@@ -84,13 +88,12 @@ const Game: React.FC<GameProps> = () => {
       </div>
       <div className="game-right">
         <div className="game-stats">
-          <div className="game-stat game-round">Tour: {round}</div>
           <div className="game-stat game-global-pollution">Pollution Globale: {globalPollution}</div>
           <div className="game-stat game-your-balance">Votre Argent: {you.balance}</div>
           <div className="game-stat game-your-score">Votre Score: {you.score}</div>
         </div>
         <div className="game-end-turn" onClick={onEndTurnClick}>
-          <button>Fin du tour</button>
+          <button>Fin du tour {round}</button>
         </div>
       </div>
     </div>

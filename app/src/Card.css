@@ -1,61 +1,131 @@
+.card-container {
+  position: relative;
+  display: inline-block; /* Ensures the container takes no extra space */
+  width: var(--card-size);
+  height: var(--card-size);
+}
+
+.card-container:hover .card-box {
+  transform: rotateY(180deg); /* Rotate the card-box on hover */
+}
+
 .card-box {
   position: relative;
-  display: flex;
-  justify-content: center; /* Horizontal center */
-  align-items: center; /* Vertical center */
-  text-align: center;
-
+  width: 100%; /* Match the size of the container */
+  height: 100%; /* Match the size of the container */
   background-color: var(--card-bg-color);
   border: var(--card-border-width) solid var(--card-border-color);
   border-radius: var(--card-border-radius);
-
-  font-family: var(--card-font-family);
-  font-size: var(--card-font-size);
-  color: var(--card-font-color);
-
-  padding: var(--card-padding);
-  width: var(--card-size);
-  height: var(--card-size);
-  box-sizing: border-box; /* Ensure border + padding stay inside card size */
-
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
   box-shadow: var(--card-box-shadow);
+  box-sizing: border-box; /* Ensure border + padding stay inside card size */
+  transform-style: preserve-3d; /* Enable 3D transformations for child elements */
+  transition: transform var(--transition-speed); /* Smooth rotation */
 }
 
 .card-box.available {
   cursor: pointer;
-  transform: scale(1.02);
-  box-shadow: var(--card-box-shadow-hover);
 }
 
 .card-box.not-available {
-  opacity: var(--card-opacity-disabled);
   cursor: not-allowed;
 }
 
+.card-box.not-available .card-front {
+  opacity: var(--card-opacity-disabled); /* Dim only the front side */
+}
+
+.card-front,
 .card-stats {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  user-select: none;
-  opacity: 0;
-  transition: opacity var(--transition-speed);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: var(--card-stats-bg-color);
+  backface-visibility: hidden; /* Hide the back side when not visible */
   border-radius: var(--card-border-radius);
 }
 
-.card-stats > div {
-  margin-left: var(--card-stats-margin);
-  font-size: var(--card-stats-font-size);
-  color: var(--card-stats-font-color);
+.card-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--card-bg-color);
+  transform: rotateY(0deg); /* Default position for the front side */
 }
 
-.card-box:hover .card-stats {
-  opacity: 1;
+.card-front .card-icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: auto;
+}
+
+.card-front .card-name {
+  z-index: 10;
+}
+
+.card-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  background-color: var(--card-stats-bg-color);
+  /* Position the back side for the flip */
+  transform: rotateY(180deg);
+  font-size: var(--card-stats-font-size); /* Ensure consistent font size */
+  color: var(--card-stats-font-color); /* Set text color for stats */
+  border-radius: var(--card-border-radius); /* Match the card's border radius */
+}
+
+.card-stats .card-bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
+.card-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--card-stats-font-size); /* Font size for stats */
+  font-weight: var(--card-stats-font-weight); /* Font weight for stats */
+  width: 25%;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.card-stat.money {
+  background-color: var(--color-money); /* Specific color for money stat */
+}
+
+.card-stat.score {
+  background-color: var(--color-score); /* Specific color for score stat */
+}
+
+.card-stat.pollution {
+  background-color: var(--color-pollution); /* Specific color for pollution stat */
+}
+
+.card-stat svg {
+  width: 1.5rem; /* Icon size */
+  height: 1.5rem;
+}
+
+.card-stat span {
+  font-size: var(--card-stats-font-size); /* Font size for stat value */
+  font-weight: var(--card-stats-font-weight); /* Font weight for stat value */
+}
+
+.card-cost {
+  background-color: var(--card-cost-bg-color);
+  color: var(--card-cost-font-color);
+  font-size: var(--card-cost-font-size);
+  font-weight: var(--card-cost-font-weight);
+  padding: 0.2rem 0.5rem;
+  margin: 0.5rem;
+  border-radius: var(--card-cost-border-radius);
 }
