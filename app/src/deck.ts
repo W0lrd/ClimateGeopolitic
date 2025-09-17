@@ -1,19 +1,19 @@
-import Charbon from './icons/cards/IconVector-01_Charbon.svg?react'
-import Gaz from './icons/cards/IconVector-02_Gaz.svg?react'
-import Eolienne from './icons/cards/IconVector-03_Eolienne.svg?react'
-import Solaire from './icons/cards/IconVector-04_Solaire.svg?react'
-import Hydro from './icons/cards/IconVector-05_Hydro.svg?react'
-import Nucleair from './icons/cards/IconVector-06_Nucleair.svg?react'
-import Taxe from './icons/cards/IconVector-07_Taxe.svg?react'
-import Transports from './icons/cards/IconVector-08_Transports.svg?react'
-import Renovation from './icons/cards/IconVector-09_Renovation.svg?react'
-import Restauration from './icons/cards/IconVector-10_Restauration.svg?react'
-import Circulaire from './icons/cards/IconVector-11_Circulaire.svg?react'
-import Capture from './icons/cards/IconVector-12_Capture.svg?react'
-import Industrie from './icons/cards/IconVector-13_Industrie.svg?react'
-import Agroecologie from './icons/cards/IconVector-14_Agroecologie.svg?react'
-import Permaculture from './icons/cards/IconVector-15_Permaculture.svg?react'
-import Agroforesterie from './icons/cards/IconVector-16_Agroforesterie.svg?react'
+import Charbon from './icons/cards/IconVector_01-Charbon.svg?react'
+import Gaz from './icons/cards/IconVector_02-Gaz.svg?react'
+import Eolienne from './icons/cards/IconVector_03-Eolienne.svg?react'
+import Solaire from './icons/cards/IconVector_04-Solaire.svg?react'
+import Hydro from './icons/cards/IconVector_05-Hydro.svg?react'
+import Nucleaire from './icons/cards/IconVector_06-Nucleaire.svg?react'
+import Taxe from './icons/cards/IconVector_07-Taxe.svg?react'
+import Transports from './icons/cards/IconVector_08-Transports.svg?react'
+import Renovation from './icons/cards/IconVector_09-Renovation.svg?react'
+import Restauration from './icons/cards/IconVector_10-Restauration.svg?react'
+import Circulaire from './icons/cards/IconVector_11-Circulaire.svg?react'
+import Capture from './icons/cards/IconVector_12-Capture.svg?react'
+import Industrie from './icons/cards/IconVector_13-Industrie.svg?react'
+import Agroecologie from './icons/cards/IconVector_14-Agroecologie.svg?react'
+import Permaculture from './icons/cards/IconVector_15-Permaculture.svg?react'
+import Agroforesterie from './icons/cards/IconVector_16-Agroforesterie.svg?react'
 
 export type CardId = number
 
@@ -49,7 +49,7 @@ export const DECK: Array<Card> = [
   ..._createCards("Eoliennes", 3, 5, 1, 1, 0, Eolienne),
   ..._createCards("Solaires", 3, 4, 1, 1, 0, Solaire),
   ..._createCards("Barrages hydroliques", 1, 6, 1, 1, 0, Hydro),
-  ..._createCards("Centrale nucléaire", 2, 15, 4, 0, 1, Nucleair),
+  ..._createCards("Centrale nucléaire", 2, 15, 4, 0, 1, Nucleaire),
   ..._createCards("Taxe carbone", 1, 30, 3, 5, -2, Taxe),
   ..._createCards("Transports durables", 2, 16, 0, 5, -1, Transports),
   ..._createCards("Rénovation thermique", 1, 22, 1, 5, -2, Renovation),
