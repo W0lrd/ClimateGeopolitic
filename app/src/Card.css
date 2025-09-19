@@ -46,7 +46,7 @@
 .card-front {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   background-color: var(--card-bg-color);
   transform: rotateY(0deg); /* Default position for the front side */
@@ -63,6 +63,10 @@
 
 .card-front .card-name {
   z-index: 10;
+}
+
+.card-top {
+  width: 100%;
 }
 
 .card-stats {
@@ -121,6 +125,11 @@
 }
 
 .card-cost {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--card-cost-bg-color);
   color: var(--card-cost-font-color);
   font-size: var(--card-cost-font-size);

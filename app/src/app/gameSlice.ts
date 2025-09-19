@@ -6,12 +6,9 @@ import {
     INITIAL_BALANCE,
     DRAW_CARDS_PER_TURN,
     MAX_GLOBAL_POLLUTION,
-    SIZE_INITIAL_HAND,
+    INITIAL_HAND_SPECS,
 } from './settings';
 
-DECK.sort(() => Math.random() - 0.5); // shuffle deck
-const INITIAL_HAND = DECK.map((c) => c.id).slice(0, SIZE_INITIAL_HAND);
-const INITIAL_DECK = DECK.map((c) => c.id).slice(SIZE_INITIAL_HAND);
 
 const AI_STRATEGIES: Array<Strategy> = [
     'greedy',
@@ -47,21 +44,42 @@ export interface PlayersSliceState {
     playerHoveredId: PlayerId | null // to track which player is hovered in the UI
 }
 
+const _createPlayer = (id: PlayerId, strategy?: Strategy): Player => {
+    let deck = DECK.slice(0)
+    const hand = deck.reduce<Array<Card>>((hand, card) => {
+        if (
+            INITIAL_HAND_SPECS[card.name] !== undefined &&
+                INITIAL_HAND_SPECS[card.name] > hand.filter(c => c.name === card.name).length
+        ) {
+            hand.push(card)
+        }
+        return hand
+    }, [])
+    deck = deck.filter(card => !hand.includes(card))
+    deck.sort(() => Math.random() - 0.5) // shuffle
+    for (let i = 0; i < (INITIAL_HAND_SPECS['RANDOM'] || 0); i++) {
+        hand.push(deck.shift()!)
+    }
+    
+    return {
+        id,
+        name: `Pays ${id}`,
+        board: [],
+        hand: hand.map(card => card.id),
+        deck: deck.map(card => card.id),
+        balance: INITIAL_BALANCE,
+        score: 0, // Initialize score
+        pollution: 0, // Initialize pollution
+        strategy,
+    }
+
+}
+
 const _createAiPlayers = (count: number): Array<Player> => {
     const players: Array<Player> = []
     const startId = YOUR_PLAYER_ID + 1
     for (let i = startId; i <= count + 1; i++) {
-        players.push({
-            id: i,
-            name: `Pays ${i}`,
-            board: [],
-            hand: INITIAL_HAND,
-            deck: INITIAL_DECK,
-            balance: INITIAL_BALANCE,
-            score: 0, // Initialize score
-            pollution: 0, // Initialize pollution
-            strategy: AI_STRATEGIES[(i - startId) % AI_STRATEGIES.length],
-        })
+        players.push(_createPlayer(i, AI_STRATEGIES[(i - startId) % AI_STRATEGIES.length]))
     }
     return players
 }
@@ -89,16 +107,7 @@ export const computePollutionIncome = (player: Player): number =>
 
 const initialState: PlayersSliceState = {
     players: [
-        {
-            id: YOUR_PLAYER_ID,
-            name: 'Pays 1',
-            board: [],
-            hand: INITIAL_HAND,
-            deck: INITIAL_DECK,
-            balance: INITIAL_BALANCE,
-            score: 0,
-            pollution: 0,
-        },
+        _createPlayer(YOUR_PLAYER_ID),
         ..._createAiPlayers(NUMBER_OF_PLAYERS - 1),
     ],
     status: 'init',
