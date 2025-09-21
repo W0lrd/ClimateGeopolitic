@@ -6,32 +6,71 @@
 }
 
 :root {
-  /* -------- COLORS -------- */
+  /* -------- COLORS : pink theme -------- */
+  --pink-highlight: #ff006aff; /* Primary highlight (pink) with full opacity */
+  --pink-highlight-bg: #ff006a1a; /* 10% opacity for highlight background */
+  --pink-subtitle-text: #ff006aff; /* Pink subtitle text with full opacity */
+  --pink-button-bg: #ff006aff; /* Pink button background with full opacity */
+  --pink-button-bg-hover: #ff4d94ff; /* Simplified gray for button hover background with full opacity */
+  --pink-pollution-indicator: #ff006aff; /* Bright pink for pollution indicator */
+  --pink-pollution-indicator-border: #ff006aff; /* Bright pink border for pollution indicator */
+
+  /* -------- COLORS : blue theme -------- */
+  --blue-highlight: #58a6ffff; /* Soft blue highlight with full opacity */
+  --blue-highlight-bg: #58a6ff1a; /* 10% opacity for highlight background */
+  --blue-subtitle-text: #58a6ffff; /* Soft blue subtitle text with full opacity */
+  --blue-button-bg: #1e3a5fff; /* Darker blue button background with full opacity */
+  --blue-button-bg-hover: #274a7dff; /* Slightly brighter dark blue for hover with full opacity */
+  --blue-pollution-indicator: #ffffffff; /* Bright pink for pollution indicator */
+  --blue-pollution-indicator-border: var(--color-border); /* Bright pink border for pollution indicator */
+
+  /* -------- COLORS : default theme -------- */
+  --color-highlight: var(--blue-highlight);
+  --color-highlight-bg: var(--blue-highlight-bg);
+  --color-subtitle-text: var(--blue-subtitle-text);
+  --color-button-bg: var(--blue-button-bg);
+  --color-button-bg-hover: var(--blue-button-bg-hover);
+  --color-pollution-indicator: var(--blue-pollution-indicator); /* Bright pink for pollution indicator */
+  --color-pollution-indicator-border: var(--blue-pollution-indicator-border);
+
   --color-page-bg: #121212; /* Black background */
   --color-container-bg: #1e1e1e; /* Dark grey for containers */
   --color-border: #444444; /* Subtle grey border */
-  --color-highlight: rgb(255, 0, 106); /* Primary highlight (pink) */
-  --color-highlight-bg: rgba(255, 0, 106, 0.1); /* Highlight background */
-  --color-highlight-secondary: rgb(0, 139, 93); /* Secondary highlight (green) */
-  --color-highlight-secondary-bg: rgba(0, 139, 93, 0.1); /* Secondary highlight background */
   --color-text: #e0e0e0; /* Light grey text */
   --color-text-muted: #b0b0b0; /* Muted grey text */
   --color-details-bg: #2a2a2a; /* Slightly lighter grey for details */
   --color-subtitle-bg: #000000; /* Black subtitle background */
-  --color-subtitle-text: rgb(255, 0, 106); /* Pink subtitle text */
-  --color-overlay-bg: rgba(0, 0, 0, 0.6); /* Darker overlay background */
+  --color-overlay-bg: rgba(0, 0, 0, 0.5); /* Darker overlay background */
 
-  --color-button-bg: rgb(255, 0, 106); /* Pink button background */
-  --color-button-bg-hover: rgb(0, 139, 93); /* Green button hover background */
   --color-button-text: #ffffff; /* White button text */
-  --color-button-text-hover: #000000; /* Black button text on hover */
-  --color-button-border: #444444; /* Grey button border */
+  --color-button-text-hover: #ffffff; /* Muted grey button text on hover */
+  --color-button-border: #ffffff; /* Grey button border */
 
   --color-stat-bg: #333333; /* Dark grey for stat boxes */
 
-  --color-money: #ffd700; /* Gold color for money */
-  --color-score: #00ffff; /* Cyan color for score */
-  --color-pollution: #ff4500; /* OrangeRed color for pollution */
+  /* -------- COLORS : cards -------- */
+  --color-card-bg: #1e1e1e; /* Match container background */
+  --color-card-border: #444444; /* Grey border for cards */
+  --color-card-box-shadow: rgba(0, 0, 0, 0.2); /* Default box shadow */
+  --color-card-box-shadow-hover: rgba(0, 0, 0, 0.4); /* Slightly darker hover box shadow */
+  --color-card-stats-bg: rgba(30, 30, 30, 0.9); /* Darker background for card stats */
+  --color-card-font-color: #919191; /* Softer light grey for card font */
+
+  /* Adjusted colors for pink and blue themes */
+  --color-card-cost-color: #e0e0e0; /* Soft green for cost available */
+  --color-card-cost-bg: #2a2a2a; /* Dark grey for card cost background */
+  --color-card-cost-unavailable: #242424; /* Bright red for unavailable card cost */
+  --color-card-cost-unavailable-bg: #3a3a3a; /* Darker grey for unavailable cost background */
+  --color-card-money: #ffd70066; /* Gold for money */
+  --color-card-score: #58a6ff66; /* Softer blue for score */
+  --color-card-pollution: #ff006a66; /* Bright pink for pollution */
+
+  --color-shadow-default: rgba(0, 0, 0, 0.2); /* Default shadow color */
+  --color-shadow-highlighted: rgba(0, 0, 0, 0.3); /* Highlighted shadow color */
+
+  --player-bg-color: #1e1e1e; /* Same as container background */
+  --player-border-color: #444444; /* Same as card border */
+  --player-font-color: #e0e0e0; /* Same as text */
 
   /* -------- TYPOGRAPHY -------- */
   --font-family-base: "Open Sans", sans-serif;
@@ -42,7 +81,7 @@
   --font-size-player: 1rem;
   --font-size-button: 1.2rem;
   --font-size-small: 0.8rem;
-  --font-size-game-stat: 1.2rem;
+  --font-size-game-stat: 1.5rem;
 
   --font-weight-bold: bold;
   --font-weight-regular: 400; /* Added font weight */
@@ -63,56 +102,35 @@
 
   /* -------- BORDER WIDTH -------- */
   --border-width: 1px; /* Updated border width */
+  --border-width-thick: 2px; /* Thicker border width */
 
   /* -------- BOX SHADOW -------- */
-  --box-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.2);
-  --box-shadow-highlighted: 0 6px 10px rgba(0, 0, 0, 0.3);
+  --box-shadow-default: 0 4px 6px var(--color-shadow-default);
+  --box-shadow-highlighted: 0 6px 10px var(--color-shadow-highlighted);
 
   /* -------- ANIMATION -------- */
   --transition-speed: 0.3s;
+  --button-scale-ratio: 1.05; /* Scale ratio for hover effects */
 
   /* -------- CARDS -------- */
   --card-size: 150px;
-  --card-bg-color: #1e1e1e; /* Match container background */
-  --card-border-color: #444444; /* Grey border for cards */
   --card-border-width: 2px;
   --card-border-radius: 8px;
-
   --card-font-family: Arial, sans-serif;
   --card-font-size: 1rem;
-  --card-font-color: #e0e0e0; /* Light grey text */
-
   --card-padding: 1rem;
-
-  --card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  --card-box-shadow-hover: 0 6px 10px rgba(0, 0, 0, 0.3);
-
-  --card-opacity-disabled: 0.5;
-
-  --card-stats-bg-color: rgba(0, 0, 0, 0.8);
+  --card-opacity-disabled: 0.2;
   --card-stats-margin: 1rem;
   --card-stats-font-size: 1.5rem;
-  --card-stats-font-color: #ffffff;
   --card-stats-font-weight: bold;
-
-  /* Card Cost Variables */
-  --card-cost-bg-color: #444444; /* Background color for card cost */
-  --card-cost-font-color: #ffffff; /* Font color for card cost */
-  --card-cost-font-size: 0.9rem; /* Font size for card cost */
-  --card-cost-font-weight: bold; /* Font weight for card cost */
-  --card-cost-border-radius: 50%; /* Border radius for card cost */
+  --card-cost-font-size: 1.2rem;
+  --card-cost-font-weight: bold;
+  --card-cost-border-radius: 50%;
 
   /* -------- PLAYERS -------- */
-  --player-bg-color: var(--color-container-bg);
-  --player-border-color: var(--card-border-color);
   --player-border-width: 2px;
   --player-border-radius: var(--radius-container);
-
-  --player-font-size: var(--font-size-text);
-  --player-font-color: var(--color-text);
-
   --player-padding: var(--spacing-container-padding);
-
   --player-card-min-width: 220px;
   --players-max-width: 1000px;
 
@@ -124,13 +142,6 @@
   /* -------- GAME LAYOUT -------- */
   --game-left-width: 80%; /* Width of the left column */
   --game-right-width: 20%; /* Width of the right column */
-}
-
-body, html {
-  height: 100%;
-  width: 100%;
-  background-color: var(--color-page-bg);
-  color: var(--color-text);
 }
 
 * {
@@ -146,25 +157,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body, html, #root {
+  height: 100%;
+}
+
 code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 button {
+  font-weight: bold;
+  text-transform: uppercase;
   font-family: var(--font-family-base);
   font-size: var(--font-size-button);
   color: var(--color-button-text);
   background-color: var(--color-button-bg);
-  border: 2px solid var(--color-button-border);
+  border: var(--border-width-thick) solid var(--color-button-border);
   border-radius: var(--radius-container);
   padding: var(--button-padding-y) var(--button-padding-x);
   cursor: pointer;
   transition: background-color var(--transition-speed),
-    color var(--transition-speed);
+    color var(--transition-speed), transform var(--transition-speed);
 }
 
 button:hover {
   background-color: var(--color-button-bg-hover);
   color: var(--color-button-text-hover);
+  transform: scale(var(--button-scale-ratio)); /* Slightly zoom in */
 }

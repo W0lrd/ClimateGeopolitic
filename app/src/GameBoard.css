@@ -1,11 +1,12 @@
 .game-board {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--card-size), 1fr));
     gap: var(--spacing-medium);
     padding: var(--spacing-medium);
     width: 100%;
 
-    background-color: var(--color-highlight-bg); /* Match highlighted background */
+    background-color: var(--color-highlight-bg);
     box-shadow: var(--box-shadow-highlighted); /* Match highlighted box shadow */
     color: var(--color-text);
 }
@@ -14,4 +15,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.game-board.hidden {
+    display: none;
+}
+
+.game-board .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure background is behind cards */
+    overflow: hidden; /* Prevent scrollbars */
 }

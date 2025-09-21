@@ -10,11 +10,12 @@
 }
 
 .card-box {
+  color: var(--color-card-font-color);
   position: relative;
   width: 100%; /* Match the size of the container */
   height: 100%; /* Match the size of the container */
-  background-color: var(--card-bg-color);
-  border: var(--card-border-width) solid var(--card-border-color);
+  background-color: var(--color-card-bg);
+  border: var(--card-border-width) solid var(--color-card-border);
   border-radius: var(--card-border-radius);
   box-shadow: var(--card-box-shadow);
   box-sizing: border-box; /* Ensure border + padding stay inside card size */
@@ -30,8 +31,12 @@
   cursor: not-allowed;
 }
 
-.card-box.not-available .card-front {
+.card-box.not-available .card-front > * {
   opacity: var(--card-opacity-disabled); /* Dim only the front side */
+}
+
+.card-box.not-available .card-top {
+  opacity: 1;
 }
 
 .card-front,
@@ -48,17 +53,23 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--card-bg-color);
+  background-color: var(--color-card-bg);
   transform: rotateY(0deg); /* Default position for the front side */
 }
 
 .card-front .card-icon {
   position: absolute;
-  top: 0;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 70%;
   height: auto;
+}
+
+.card-front .card-icon svg {
+  fill: var(--color-card-font-color);
+  stroke: var(--color-card-font-color);
+  stroke-width: 0;
 }
 
 .card-front .card-name {
@@ -76,11 +87,11 @@
   width: 100%;
   height: 100%;
   align-items: flex-start;
-  background-color: var(--card-stats-bg-color);
+  background-color: var(--color-card-stats-bg);
   /* Position the back side for the flip */
   transform: rotateY(180deg);
   font-size: var(--card-stats-font-size); /* Ensure consistent font size */
-  color: var(--card-stats-font-color); /* Set text color for stats */
+  color: var(--color-card-font-color); /* Set text color for stats */
   border-radius: var(--card-border-radius); /* Match the card's border radius */
 }
 
@@ -92,6 +103,7 @@
 }
 
 .card-stat {
+  color: var(--color-card-cost-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,20 +115,23 @@
 }
 
 .card-stat.money {
-  background-color: var(--color-money); /* Specific color for money stat */
+  background-color: var(--color-card-money); /* Specific color for money stat */
 }
 
 .card-stat.score {
-  background-color: var(--color-score); /* Specific color for score stat */
+  background-color: var(--color-card-score); /* Specific color for score stat */
 }
 
 .card-stat.pollution {
-  background-color: var(--color-pollution); /* Specific color for pollution stat */
+  background-color: var(--color-card-pollution); /* Specific color for pollution stat */
 }
 
 .card-stat svg {
   width: 1.5rem; /* Icon size */
   height: 1.5rem;
+  fill: var(--color-card-cost-color);
+  stroke: var(--color-card-cost-color);
+  stroke-width: 0;
 }
 
 .card-stat span {
@@ -125,16 +140,21 @@
 }
 
 .card-cost {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: calc(var(--card-cost-font-size) * 1.5);
+  height: calc(var(--card-cost-font-size) * 1.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--card-cost-bg-color);
-  color: var(--card-cost-font-color);
+  background-color: var(--color-card-cost-bg); /* Use the new variable for background color */
+  color: var(--color-card-cost-color); /* Use the new variable for text color */
   font-size: var(--card-cost-font-size);
   font-weight: var(--card-cost-font-weight);
   padding: 0.2rem 0.5rem;
   margin: 0.5rem;
   border-radius: var(--card-cost-border-radius);
+}
+
+.card-box.not-available .card-cost {
+  background-color: var(--color-card-cost-unavailable-bg); /* Use the new variable for unavailable background */
+  color: var(--color-card-cost-unavailable); /* Use the new variable for unavailable text color */
 }

@@ -1,0 +1,33 @@
+.background {
+    overflow: hidden;
+}
+
+/* width="1200" height="800" */
+.background-canvas {
+    position: absolute;
+    display: block; /* Remove inline-block spacing */
+    margin: auto; /* Center both horizontally and vertically */
+    transform: translateX(-50%);
+    top: 0;
+    left: 50%;
+    width: auto; /* Adjust width to maintain aspect ratio */
+    height: 100%; /* Make the canvas fill the height of the container */
+}
+
+/* Media query for portrait orientation (height > width) */
+@media (max-aspect-ratio: 1/1) {
+    .background-canvas {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 100%; /* Make the canvas fill the width of the container */
+        height: auto; /* Maintain the aspect ratio */
+    }
+}
+
+.background-cols {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%); /* Hide below the visible area */
+}

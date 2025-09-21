@@ -10,7 +10,9 @@ import "./Game.css";
 import type { Card as CardType } from "./deck";
 import { useBuyCardsAI } from "./ia";
 import GameBoard from "./GameBoard";
-import { selectPlayerHand, selectPlayerBoard } from "./app/selectors";
+import { selectPlayerHand, selectPlayerBoards } from "./app/selectors";
+import { MAX_GLOBAL_POLLUTION } from "./app/settings";
+import { setTheme } from "./theme";
 
 const TURN_TIME_MS = 600
 
@@ -20,10 +22,12 @@ const Game: React.FC<GameProps> = () => {
   const dispatch = useAppDispatch()
   const playerHovered = useAppSelector(selectPlayerHovered)
   const yourHand = useAppSelector(state => selectPlayerHand(state, YOUR_PLAYER_ID))
-  const board = useAppSelector(state => selectPlayerBoard(state, playerHovered !== null ? playerHovered.id : YOUR_PLAYER_ID))
+  const activePlayerId = playerHovered !== null ? playerHovered.id : YOUR_PLAYER_ID
+  const boards = useAppSelector(selectPlayerBoards)
   const turnOfPlayerId = useAppSelector(selectTurnOfPlayerId)
   const players = useAppSelector(selectPlayers, shallowEqual)
   const globalPollution = useAppSelector(selectGlobalPollution)
+  const pollutionRate = Math.min(globalPollution / (MAX_GLOBAL_POLLUTION), 1.0)
   const round = useAppSelector(selectRound)
   const currentPlayer = useAppSelector(state => selectPlayerById(state, turnOfPlayerId))
   const you = useAppSelector(state => selectPlayerById(state, YOUR_PLAYER_ID))
@@ -57,14 +61,14 @@ const Game: React.FC<GameProps> = () => {
     return () => {if (timer) {clearTimeout(timer)}}
   })
 
+  useEffect(() => {
+    setTheme(pollutionRate)
+  }, [pollutionRate])
+
   return (
     <div className="game-page Page">
       {turnOfPlayerId !== YOUR_PLAYER_ID && (
-        <div className="game-overlay">
-            <div className="game-overlay-text">
-              C'est le tour de {players.find(p => p.id === turnOfPlayerId)?.name}
-            </div>
-        </div>
+        <div className="game-overlay"></div>
       )}
       <div className="game-left">
         <div className="game-players-board">
@@ -73,7 +77,9 @@ const Game: React.FC<GameProps> = () => {
               <Player key={player.id} player={player} />
             ))}
           </div>
-          <GameBoard cards={board} />
+          {boards.map(({playerId, board}) => (
+              <GameBoard key={playerId} cards={board} isVisible={playerId === activePlayerId} />
+          ))}
         </div>
         <div className="game-hand">
           <div className="game-hand-inner">

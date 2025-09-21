@@ -27,11 +27,15 @@
 }
 
 .player-box.highlighted {
-    background-color: var(--color-highlight-bg);
+    background-color: rgba(var(--color-highlight-bg), 0.1);
     cursor: initial;
     transform: scale(1.02);
     box-shadow: var(--box-shadow-highlighted);
     border-color: var(--color-highlight);
+}
+
+.player-box:hover {
+    transform: scale(1.02);
 }
 
 .player-name {

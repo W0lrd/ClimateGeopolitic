@@ -5,6 +5,7 @@ import { selectStatus } from "./app/gameSlice"
 import Welcome from "./Welcome"
 import Game from "./Game"
 import GameOver from "./GameOver"
+import GameLoader from "./GameLoader"
 
 export const App: React.FC = () => {
   const lifcycleStatus = useAppSelector(selectStatus)
@@ -12,7 +13,7 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       {lifcycleStatus === 'init' ? <Welcome />: null}
-      {lifcycleStatus === 'playing' ? <Game />: null}
+      {lifcycleStatus === 'playing' ? <GameLoader><Game /></GameLoader>: null}
       {lifcycleStatus === 'over' ? <GameOver />: null}
     </div>
   )

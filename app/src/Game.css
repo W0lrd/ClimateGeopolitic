@@ -97,9 +97,14 @@
   font-weight: var(--font-weight-regular);
   color: var(--color-text);
   padding: var(--spacing-small);
-  border: var(--border-width) solid var(--color-border);
+  border: var(--border-width-thick) solid var(--color-border);
   border-radius: var(--radius-container);
   background-color: var(--color-stat-bg);
+}
+
+.game-global-pollution {
+  color: var(--color-pollution-indicator);
+  border: solid var(--border-width-thick) var(--color-pollution-indicator-border);
 }
 
 .game-end-turn {
@@ -109,4 +114,9 @@
 .game-end-turn button {
   width: 100%;
   height: var(--card-size);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.game-end-turn button:hover {
+  transform: scale(var(--button-scale-ratio)); /* Slightly zoom in */
 }

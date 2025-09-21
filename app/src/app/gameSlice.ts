@@ -24,6 +24,11 @@ export type PlayerId = number
 
 type LifecycleStatus = 'init' | 'playing' | 'over'
 
+interface LoadingStatus {
+    backgroundGeneratedCount: number,
+    status: 'idle' | 'loading' | 'loaded'
+}
+
 export interface Player {
     id: PlayerId
     name: string
@@ -39,6 +44,7 @@ export interface Player {
 export interface PlayersSliceState {
     players: Array<Player>
     status: LifecycleStatus
+    loadingStatus: LoadingStatus
     turnOfPlayerId: PlayerId
     round: number
     playerHoveredId: PlayerId | null // to track which player is hovered in the UI
@@ -111,6 +117,10 @@ const initialState: PlayersSliceState = {
         ..._createAiPlayers(NUMBER_OF_PLAYERS - 1),
     ],
     status: 'init',
+    loadingStatus: {
+        status: 'idle',
+        backgroundGeneratedCount: 0
+    },
     turnOfPlayerId: YOUR_PLAYER_ID,
     round: 1,
     playerHoveredId: null,
@@ -137,6 +147,7 @@ export const gameSlice = createAppSlice({
             // Move to next player
             state.turnOfPlayerId =
                 (state.turnOfPlayerId % NUMBER_OF_PLAYERS) + 1
+            state.playerHoveredId = state.turnOfPlayerId
 
             // If we completed a round (all players played)
             // Do revenue, etc.
@@ -173,12 +184,23 @@ export const gameSlice = createAppSlice({
         setPlayerHoveredId: create.reducer((state, action: { payload: PlayerId | null }) => {
             state.playerHoveredId = action.payload
         }),
+        setLoadingStarted: create.reducer((state) => {
+            state.loadingStatus.status = 'loading'
+            state.loadingStatus.backgroundGeneratedCount = 0
+        }),
+        setBackgroundGenerated: create.reducer((state) => {
+            state.loadingStatus.backgroundGeneratedCount += 1
+            if (state.loadingStatus.backgroundGeneratedCount >= state.players.length) {
+                state.loadingStatus.status = 'loaded'
+            }
+        })
     }),
     selectors: {
         selectPlayers: (state) => state.players,
         selectPlayerById: (state, playerId: PlayerId) =>
             findPlayerById(state, playerId),
         selectStatus: (state) => state.status,
+        selectLoadingStatus: (state) => state.loadingStatus.status,
         selectTurnOfPlayerId: (state) => state.turnOfPlayerId,
         selectRound: (state) => state.round,
         selectGlobalPollution: (state) =>
@@ -187,11 +209,12 @@ export const gameSlice = createAppSlice({
     },
 })
 
-export const { takeCard, startPlaying, endTurn, setPlayerHoveredId } = gameSlice.actions
+export const { takeCard, startPlaying, endTurn, setPlayerHoveredId, setBackgroundGenerated, setLoadingStarted } = gameSlice.actions
 export const {
     selectPlayers,
     selectPlayerById,
     selectStatus,
+    selectLoadingStatus,
     selectTurnOfPlayerId,
     selectGlobalPollution,
     selectRound,
