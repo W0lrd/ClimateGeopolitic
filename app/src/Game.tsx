@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "./app/hooks"
 import Card from "./Card"
 import { selectPlayers, endTurn, selectTurnOfPlayerId, YOUR_PLAYER_ID, selectPlayerById, selectGlobalPollution, selectRound, selectPlayerHovered } from "./app/gameSlice";
@@ -65,6 +65,44 @@ const Game: React.FC<GameProps> = () => {
     setTheme(pollutionRate)
   }, [pollutionRate])
 
+  const gameHandRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  // Check scroll position and update arrow visibility
+  const updateScrollArrows = () => {
+    const container = gameHandRef.current;
+    if (container) {
+      setCanScrollLeft(container.scrollLeft > 0);
+      setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth);
+    }
+  };
+
+  // Scroll the container
+  const scroll = (direction: "left" | "right") => {
+    const container = gameHandRef.current;
+    if (container) {
+      const scrollAmount = 100; // Adjust scroll amount as needed
+      container.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const container = gameHandRef.current;
+    if (container) {
+      updateScrollArrows(); // Initial check
+      container.addEventListener("scroll", updateScrollArrows); // Update on scroll
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", updateScrollArrows);
+      }
+    };
+  }, []);
+
   return (
     <div className="game-page Page">
       {turnOfPlayerId !== YOUR_PLAYER_ID && (
@@ -81,22 +119,38 @@ const Game: React.FC<GameProps> = () => {
               <GameBoard key={playerId} cards={board} isVisible={playerId === activePlayerId} />
           ))}
         </div>
-        <div className="game-hand">
-          <div className="game-hand-inner">
-            {
-              playerHovered && playerHovered.id !== YOUR_PLAYER_ID && <div className="game-hand-overlay"></div>
-            }
-            {yourHand.map(card => (
-              <Card key={card.id} card={card} onClick={onCardClick} status={currentPlayer.balance >= card.cost ? "available": "not-available"} />
-            ))}
+        <div className="game-hand-wrapper">
+          {canScrollLeft && (
+            <div className="scroll-arrow left" onClick={() => scroll("left")}>
+              <div className="scroll-arrow-icon">
+                &#9664; {/* Left arrow symbol */}
+              </div>
+            </div>
+          )}
+          <div className="game-hand" ref={gameHandRef}>
+            <div className="game-hand-inner">
+              {
+                playerHovered && playerHovered.id !== YOUR_PLAYER_ID && <div className="game-hand-overlay"></div>
+              }
+              {yourHand.map(card => (
+                <Card key={card.id} card={card} onClick={onCardClick} status={currentPlayer.balance >= card.cost ? "available": "not-available"} />
+              ))}
+            </div>
           </div>
+          {canScrollRight && (
+            <div className="scroll-arrow right" onClick={() => scroll("right")}>
+              <div className="scroll-arrow-icon">
+                &#9654; {/* Right arrow symbol */}
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="game-right">
         <div className="game-stats">
-          <div className="game-stat game-global-pollution">Pollution Globale: {globalPollution}</div>
-          <div className="game-stat game-your-balance">Votre Argent: {you.balance}</div>
-          <div className="game-stat game-your-score">Votre Score: {you.score}</div>
+          <div className="game-stat game-global-pollution">Pollution Globale : {globalPollution}</div>
+          <div className="game-stat game-your-balance">Votre Argent : {you.balance}</div>
+          <div className="game-stat game-your-score">Votre Score : {you.score}</div>
         </div>
         <div className="game-end-turn" onClick={onEndTurnClick}>
           <button>Fin du tour {round}</button>

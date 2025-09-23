@@ -88,4 +88,10 @@ export const DECK: Array<Card> = [
 ]
 
 export const findCards = (cardIds: Array<CardId>) =>
-  DECK.filter(card => cardIds.includes(card.id))
+  cardIds.map(cardId => {
+    const card = DECK.find(card => card.id === cardId)
+    if (!card) {
+      throw new Error(`Card with id ${cardId} not found`)
+    }
+    return card
+  })

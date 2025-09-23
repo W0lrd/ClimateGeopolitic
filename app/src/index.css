@@ -41,6 +41,7 @@
   --color-details-bg: #2a2a2a; /* Slightly lighter grey for details */
   --color-subtitle-bg: #000000; /* Black subtitle background */
   --color-overlay-bg: rgba(0, 0, 0, 0.5); /* Darker overlay background */
+  --color-overlay-bg-hover: rgba(0, 0, 0, 0.7); /* Darker overlay background on hover */
 
   --color-button-text: #ffffff; /* White button text */
   --color-button-text-hover: #ffffff; /* Muted grey button text on hover */

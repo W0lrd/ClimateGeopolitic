@@ -1,6 +1,12 @@
+.game-hand-wrapper {
+  position: relative; /* Positioning context for the arrows */
+  display: flex;
+  align-items: center;
+}
+
 .game-hand {
-  width: 100%;
-  overflow: auto;
+  overflow-x: auto; /* Scrollable container */
+  white-space: nowrap;
 }
 
 .game-hand-inner {
@@ -119,4 +125,40 @@
 
 .game-end-turn button:hover {
   transform: scale(var(--button-scale-ratio)); /* Slightly zoom in */
+}
+
+.scroll-arrow {
+  color: var(--color-text);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-overlay-bg);
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  user-select: none;
+  line-height: 1; /* Ensure the arrow character is vertically centered */
+}
+
+.scroll-arrow-icon {
+  position: relative;
+  top: -0.15rem; /* Adjust this value as needed to perfectly center the arrow */
+}
+
+.scroll-arrow.left {
+  left: 0.5rem; /* Stick to the left side of the wrapper */
+}
+
+.scroll-arrow.right {
+  right: 0.5rem; /* Stick to the right side of the wrapper */
+}
+
+.scroll-arrow:hover {
+  background-color: var(--color-overlay-bg-hover);
 }

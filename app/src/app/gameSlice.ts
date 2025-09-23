@@ -165,7 +165,7 @@ export const gameSlice = createAppSlice({
                     for (let i = 0; i < DRAW_CARDS_PER_TURN; i++) {
                         const cardId = player.deck.shift()
                         if (cardId !== undefined) {
-                            player.hand.push(cardId)
+                            player.hand.unshift(cardId)
                         }
                     }
                 })

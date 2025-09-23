@@ -24,12 +24,12 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
                 {player.name}
                 {player.id !== YOUR_PLAYER_ID
                     ? ` (${player.strategy})`
-                    : ` (you)`}
+                    : ` (vous)`}
             </div>
             <div className="player-stats">
-                <div className='player-stat'><span>Revenu:</span><span>{computeIncome(player)}</span></div>
-                <div className='player-stat'><span>Score:</span><span>{player.score}</span></div>
-                <div className='player-stat'><span>Pollution:</span><span>{player.pollution}</span></div>
+                <div className='player-stat'><span>Revenu : </span><span>{computeIncome(player)}</span></div>
+                <div className='player-stat'><span>Score : </span><span>{player.score}</span></div>
+                <div className='player-stat'><span>Pollution : </span><span>{player.pollution}</span></div>
             </div>
         </div>
     )
