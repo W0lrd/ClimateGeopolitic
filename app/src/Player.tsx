@@ -27,9 +27,18 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
                     : ` (vous)`}
             </div>
             <div className="player-stats">
-                <div className='player-stat'><span>Revenu : </span><span>{computeIncome(player)}</span></div>
-                <div className='player-stat'><span>Score : </span><span>{player.score}</span></div>
-                <div className='player-stat'><span>Pollution : </span><span>{player.pollution}</span></div>
+                <div className="player-stat">
+                    <span>Revenu&nbsp;: </span>
+                    <span>{computeIncome(player)}</span>
+                </div>
+                <div className="player-stat">
+                    <span>Score&nbsp;: </span>
+                    <span>{player.score}</span>
+                </div>
+                <div className="player-stat">
+                    <span>Pollution&nbsp;: </span>
+                    <span>{player.pollution}</span>
+                </div>
             </div>
         </div>
     )

@@ -19,4 +19,14 @@
   font-size: var(--font-size-text);
   line-height: 1.5;
   margin-bottom: var(--spacing-text-margin-bottom);
+  text-align: left;
+}
+
+.welcome-text svg {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  top: 0.5rem;
+  vertical-align: -0.1em;
+  fill: var(--color-text);
 }

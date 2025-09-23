@@ -22,7 +22,7 @@
   --blue-button-bg: #1e3a5fff; /* Darker blue button background with full opacity */
   --blue-button-bg-hover: #274a7dff; /* Slightly brighter dark blue for hover with full opacity */
   --blue-pollution-indicator: #ffffffff; /* Bright pink for pollution indicator */
-  --blue-pollution-indicator-border: var(--color-border); /* Bright pink border for pollution indicator */
+  --blue-pollution-indicator-border: var(--color-border-highlight); /* Bright pink border for pollution indicator */
 
   /* -------- COLORS : default theme -------- */
   --color-highlight: var(--blue-highlight);
@@ -37,6 +37,7 @@
   --color-container-bg: #1e1e1e; /* Dark grey for containers */
   --color-border: #444444; /* Subtle grey border */
   --color-text: #e0e0e0; /* Light grey text */
+  --color-border-highlight: var(--color-text); /* Highlight border color */
   --color-text-muted: #b0b0b0; /* Muted grey text */
   --color-details-bg: #2a2a2a; /* Slightly lighter grey for details */
   --color-subtitle-bg: #000000; /* Black subtitle background */
@@ -186,4 +187,37 @@ button:hover {
   background-color: var(--color-button-bg-hover);
   color: var(--color-button-text-hover);
   transform: scale(var(--button-scale-ratio)); /* Slightly zoom in */
+}
+
+
+@media (max-width: 1400px) {
+  :root {
+    --font-size-title: 1.2rem; /* Smaller title font size */
+    --font-size-subtitle: 1.1rem; /* Smaller subtitle font size */
+    --font-size-text: 0.8rem; /* Smaller base text size */
+    --font-size-player: 0.8rem; /* Smaller player font size */
+    --font-size-button: 0.9rem; /* Smaller button font size */
+    --font-size-small: 0.6rem; /* Smaller small text size */
+    --font-size-game-stat: 1.1rem; /* Smaller game stat font size */
+  }
+
+  button {
+    padding: 0.5rem 1rem; /* Adjust button padding for smaller screens */
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --font-size-title: 1.0rem; /* Smaller title font size */
+    --font-size-subtitle: 1.0rem; /* Smaller subtitle font size */
+    --font-size-text: 0.9rem; /* Smaller base text size */
+    --font-size-player: 0.9rem; /* Smaller player font size */
+    --font-size-button: 0.8rem; /* Smaller button font size */
+    --font-size-small: 0.5rem; /* Smaller small text size */
+    --font-size-game-stat: 1.0rem; /* Smaller game stat font size */
+  }
+
+  button {
+    padding: 0.5rem 1rem; /* Adjust button padding for smaller screens */
+  }
 }

@@ -103,14 +103,27 @@
   font-weight: var(--font-weight-regular);
   color: var(--color-text);
   padding: var(--spacing-small);
-  border: var(--border-width-thick) solid var(--color-border);
+  border: var(--border-width-thick) solid var(--color-border-highlight);
   border-radius: var(--radius-container);
   background-color: var(--color-stat-bg);
+  margin-bottom: var(--spacing-medium);
+}
+
+.game-stat .number {
+  font-size: 200%;
+  font-weight: bold;
 }
 
 .game-global-pollution {
+  font-size: 150%;
+  text-transform: uppercase;
   color: var(--color-pollution-indicator);
   border: solid var(--border-width-thick) var(--color-pollution-indicator-border);
+  padding: var(--spacing-medium) 0;
+}
+
+.game-global-pollution .number {
+  font-size: 250%;
 }
 
 .game-end-turn {

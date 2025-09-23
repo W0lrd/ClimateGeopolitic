@@ -148,9 +148,9 @@ const Game: React.FC<GameProps> = () => {
       </div>
       <div className="game-right">
         <div className="game-stats">
-          <div className="game-stat game-global-pollution">Pollution Globale : {globalPollution}</div>
-          <div className="game-stat game-your-balance">Votre Argent : {you.balance}</div>
-          <div className="game-stat game-your-score">Votre Score : {you.score}</div>
+          <div className="game-stat game-global-pollution">Pollution Globale<div className="number">{globalPollution}</div></div>
+          <div className="game-stat game-your-balance">Votre Argent<div className="number">{you.balance}</div></div>
+          <div className="game-stat game-your-score">Votre Score<div className="number">{you.score}</div></div>
         </div>
         <div className="game-end-turn" onClick={onEndTurnClick}>
           <button>Fin du tour {round}</button>
