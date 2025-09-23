@@ -6,7 +6,6 @@
 
 .game-hand {
   overflow-x: auto; /* Scrollable container */
-  white-space: nowrap;
 }
 
 .game-hand-inner {

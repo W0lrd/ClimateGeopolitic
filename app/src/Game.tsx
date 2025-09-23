@@ -101,7 +101,7 @@ const Game: React.FC<GameProps> = () => {
         container.removeEventListener("scroll", updateScrollArrows);
       }
     };
-  }, []);
+  }, [yourHand]);
 
   return (
     <div className="game-page Page">
