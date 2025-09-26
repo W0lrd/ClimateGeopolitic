@@ -77,7 +77,7 @@
   /* -------- TYPOGRAPHY -------- */
   --font-family-base: "Open Sans", sans-serif;
 
-  --font-size-title: 1.6rem;
+  --font-size-title: 2.5rem;
   --font-size-subtitle: 1.5rem;
   --font-size-text: 1rem; /* Updated font size */
   --font-size-player: 1rem;
@@ -144,11 +144,43 @@
   /* -------- GAME LAYOUT -------- */
   --game-left-width: 80%; /* Width of the left column */
   --game-right-width: 20%; /* Width of the right column */
+  
+  /* -------- SCROLLBAR COLORS -------- */
+  --scrollbar-track-color: #2a2a2a; /* Dark grey for the scrollbar track */
+  --scrollbar-thumb-color: #444444; /* Slightly lighter grey for the scrollbar thumb */
+  --scrollbar-thumb-hover-color: #555555; /* Slightly brighter grey on hover */
+}
+
+/* Scrollbar styles for WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the scrollbar for horizontal scrolling */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color); /* Use variable for track color */
+  border-radius: 4px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color); /* Use variable for thumb color */
+  border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color); /* Use variable for hover color */
+}
+
+/* Scrollbar styles for Firefox */
+* {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color); /* Use variables for thumb and track colors */
 }
 
 * {
   box-sizing: border-box;
   user-select: none;
+  
 }
 
 body {
@@ -189,10 +221,14 @@ button:hover {
   transform: scale(var(--button-scale-ratio)); /* Slightly zoom in */
 }
 
+/* Ensure consistent scroll behavior */
+html {
+  scroll-behavior: smooth; /* Smooth scrolling for better user experience */
+}
 
 @media (max-width: 1400px) {
   :root {
-    --font-size-title: 1.2rem; /* Smaller title font size */
+    --font-size-title: 2.2rem; /* Smaller title font size */
     --font-size-subtitle: 1.1rem; /* Smaller subtitle font size */
     --font-size-text: 0.8rem; /* Smaller base text size */
     --font-size-player: 0.8rem; /* Smaller player font size */
@@ -208,7 +244,7 @@ button:hover {
 
 @media (max-width: 900px) {
   :root {
-    --font-size-title: 1.0rem; /* Smaller title font size */
+    --font-size-title: 2rem; /* Smaller title font size */
     --font-size-subtitle: 1.0rem; /* Smaller subtitle font size */
     --font-size-text: 0.9rem; /* Smaller base text size */
     --font-size-player: 0.9rem; /* Smaller player font size */
