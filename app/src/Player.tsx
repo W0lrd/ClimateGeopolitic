@@ -22,9 +22,11 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
         >
             <div className="player-name">
                 {player.name}
+                <span className="player-you-indicator">
                 {player.id !== YOUR_PLAYER_ID
-                    ? ` (${player.strategy})`
+                    ? null
                     : ` (vous)`}
+                </span>
             </div>
             <div className="player-stats">
                 <div className="player-stat">

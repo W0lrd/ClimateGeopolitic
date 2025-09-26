@@ -13,8 +13,8 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       {lifcycleStatus === 'init' ? <Welcome />: null}
-      {lifcycleStatus === 'playing' || lifcycleStatus === 'over' ? <GameLoader><Game /></GameLoader>: null}
-      {lifcycleStatus === 'over' ? <GameOver />: null}
+      {lifcycleStatus === 'playing' || lifcycleStatus === 'over' || lifcycleStatus === 'stats' ? <GameLoader><Game /></GameLoader>: null}
+      {lifcycleStatus === 'stats' ? <GameOver />: null}
     </div>
   )
 }

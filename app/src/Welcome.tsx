@@ -41,7 +41,7 @@ Le jeu se déroule en une série de tours lors desquelles vous aurez le choix en
           la jouer (en haut à gauche). De l'autre, ce qu'elle rapportera à tous les tours suivants : 
           </p>
 
-          <p className="welcome-text">
+          <p className="welcome-text welcome-text-important">
           un revenu {<IncomeIcon />},
           une valeur de score {<ScoreIcon />} 
           et une valeur de pollution {<PollutionIcon />}.
@@ -55,7 +55,13 @@ Le jeu se déroule en une série de tours lors desquelles vous aurez le choix en
           </p>
 
           <p className="welcome-text">
-          Lorsque la pollution atteint {MAX_GLOBAL_POLLUTION}, la partie s'arrête. S'affichera alors un tableau des scores, exposant toutes les données de chaque pays.
+          <p className="welcome-text-important">
+            Lorsque la pollution atteint <b>{MAX_GLOBAL_POLLUTION}</b>, la partie s'arrête. 
+          </p>
+          </p>
+
+          <p className="welcome-text">
+          S'affichera alors un tableau des scores, exposant toutes les données de chaque pays.
           Lequel aura "gagné" ? Ce sera à vous de le déterminer...
           </p>
         </div>

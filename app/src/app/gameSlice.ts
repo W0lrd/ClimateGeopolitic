@@ -22,7 +22,7 @@ export const NUMBER_OF_PLAYERS = 4
 
 export type PlayerId = number
 
-type LifecycleStatus = 'init' | 'playing' | 'over'
+type LifecycleStatus = 'init' | 'playing' | 'stats' | 'over'
 
 interface LoadingStatus {
     backgroundGeneratedCount: number,
@@ -174,7 +174,7 @@ export const gameSlice = createAppSlice({
                     _computeGlobalPollution(state.players) >=
                     MAX_GLOBAL_POLLUTION
                 ) {
-                    state.status = 'over'
+                    state.status = 'stats'
                 }
             }
         }),
@@ -193,7 +193,13 @@ export const gameSlice = createAppSlice({
             if (state.loadingStatus.backgroundGeneratedCount >= state.players.length) {
                 state.loadingStatus.status = 'loaded'
             }
-        })
+        }),
+        closeStats: create.reducer((state) => {
+            state.status = 'over'
+        }),
+        showStats: create.reducer((state) => {
+            state.status = 'stats'
+        }),
     }),
     selectors: {
         selectPlayers: (state) => state.players,
@@ -209,7 +215,7 @@ export const gameSlice = createAppSlice({
     },
 })
 
-export const { takeCard, startPlaying, endTurn, setPlayerHoveredId, setBackgroundGenerated, setLoadingStarted } = gameSlice.actions
+export const { takeCard, startPlaying, endTurn, setPlayerHoveredId, setBackgroundGenerated, setLoadingStarted, closeStats, showStats } = gameSlice.actions
 export const {
     selectPlayers,
     selectPlayerById,

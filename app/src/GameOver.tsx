@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './GameOver.css'
 import './css-components/Page.css'
-import { useAppSelector } from './app/hooks'
+import { useAppDispatch, useAppSelector } from './app/hooks'
 import {
+    closeStats,
     computeIncome,
     computePollutionIncome,
     computeScoreIncome,
@@ -16,9 +17,11 @@ interface GameOverProps {}
 const GameOver: React.FC<GameOverProps> = () => {
     const globalPollution = useAppSelector(selectGlobalPollution)
     const players = useAppSelector(selectPlayers)
-    const [isClosed, setIsClosed] = useState(false)
-
-    if (isClosed) return null
+    const dispatch = useAppDispatch()
+    
+    const onClose = () => {
+        dispatch(closeStats())
+    }
 
     return (
         <div className="gameover-page Page">
@@ -56,12 +59,12 @@ const GameOver: React.FC<GameOverProps> = () => {
                 ))}
             </div>
             <div className="gameover-actions">
-                <button className="gameover-button" onClick={() => setIsClosed(true)}>
+                <button className="gameover-button" onClick={onClose}>
                     Voir les cartes
                 </button>
             </div>
             <div className="gameover-credits">
-                <p>Jeu développé par Sébastien Piquemal et Rémi Giraud</p>
+                <p>Jeu développé par Sébastien Piquemal et Rémy Giraud</p>
                 <p>Génération de terrains : "JavaScript Fractal Terrain Generator" (C) 2016-2017 Aiden, Mark, and Nick Waterman <a href="http://noseynick.net/files/terrain.html">http://noseynick.net/files/terrain.html</a></p>
             </div>
         </div>
