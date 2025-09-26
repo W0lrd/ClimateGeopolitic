@@ -9,6 +9,7 @@ import { DECK } from "./deck";
 import IncomeIcon from "./icons/data_v2/IconVector-V2_A-Money.svg?react";
 import ScoreIcon from "./icons/data_v2/IconVector-V2_B-Score.svg?react";
 import PollutionIcon from "./icons/data_v2/IconVector-V2_C-Pollution.svg?react";
+import Background from "./Background";
 
 interface WelcomeProps {}
 
@@ -18,7 +19,7 @@ const Welcome: React.FC<WelcomeProps> = () => {
     <div className="welcome-page Page">
       <div className="welcome-container">
         <div className="welcome-title">
-          <div className="welcome-title-background"></div>
+          <Background pollutionRate={0.9} />
           <h1>Introduction<br/>à la géopolitique<br/>du climat</h1>
           <button className="welcome-button" onClick={() => dispatch(startPlaying())}>
             Démarrer
@@ -51,7 +52,9 @@ Le jeu se déroule en une série de tours lors desquelles vous aurez le choix en
           augmentera pour chaque carte qui vous en rapporte. Vous piocherez également 2 nouvelles cartes qui
           s'ajouteront à vos options de jeu. Enfin, la pollution globale augmentera d'une valeur égale à la
           somme de la pollution de TOUS les pays.
+          </p>
 
+          <p className="welcome-text">
           Lorsque la pollution atteint {MAX_GLOBAL_POLLUTION}, la partie s'arrête. S'affichera alors un tableau des scores, exposant toutes les données de chaque pays.
           Lequel aura "gagné" ? Ce sera à vous de le déterminer...
           </p>

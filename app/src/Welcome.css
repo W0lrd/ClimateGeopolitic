@@ -7,6 +7,7 @@
   text-align: center;
   border-radius: var(--radius-container);
   overflow: auto;
+  overflow-x: hidden;
 }
 
 /* Title */
@@ -20,40 +21,22 @@
   position: relative;
 }
 
-.welcome-title-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(88, 166, 255, 0.05) 1%, /* Blue with less transparency */
-    rgba(88, 166, 255, 0.1) 25%, /* Slightly stronger blue */
-    rgba(88, 166, 255, 0.15) 89%, /* Stronger blue */
-    rgba(0, 0, 0, 0.1) 100%, /* Fade to black */
-    transparent 90%
-  ); /* Top-to-bottom gradient */
-  filter: blur(3px) contrast(1.1) brightness(1.05); /* Add subtle randomness */
-}
-
 .welcome-title h1 {
   font-size: var(--font-size-title);
   margin-bottom: var(--spacing-title-margin-bottom);
-  margin-bottom: 8rem;
-  margin-top: -8rem;
+  margin-bottom: 9rem;
+  margin-top: -4rem;
   text-transform: uppercase;
 }
 
 .welcome-title button {
   font-size: 150%;
-  border-color: #888;
 }
 
 .welcome-title h1, .welcome-title button {
   position: relative; /* Ensure text and button are above the background */
   z-index: 1;
-  color: #888;
+  
 }
 
 .welcome-title-scroll-hint {
@@ -72,7 +55,7 @@
 }
 
 .welcome-text {
-  font-size: var(--font-size-text);
+  font-size: 100%;
   line-height: 1.5;
   margin-bottom: var(--spacing-text-margin-bottom);
   text-align: left;
@@ -85,4 +68,12 @@
   top: 0.5rem;
   vertical-align: -0.1em;
   fill: var(--color-text);
+}
+
+.background-canvas {
+  opacity: 0.25;
+}
+
+.background-cols {
+  visibility: hidden;
 }

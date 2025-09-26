@@ -257,3 +257,8 @@ html {
     padding: 0.5rem 1rem; /* Adjust button padding for smaller screens */
   }
 }
+
+a {
+  color: var(--color-text);
+  text-decoration: underline;
+}

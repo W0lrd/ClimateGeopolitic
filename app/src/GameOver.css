@@ -41,21 +41,52 @@
     text-align: center;
 }
 
-.gameover-player-name {
+.gameover-player p {
+    margin: 0.5rem 0;
     font-size: var(--font-size-text);
+    text-align: left;
+}
+
+.gameover-player-name {
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
-    margin-bottom: var(--spacing-small);
+    margin-bottom: var(--spacing-large);
 }
 
 .gameover-player-you {
     font-style: italic;
-    font-size: var(--font-size-small);
+    font-size: calc(0.7 * var(--font-size-subtitle));
     margin-left: var(--spacing-small);
     color: var(--color-text);
     opacity: var(--opacity-muted);
 }
 
-.gameover-player-total {
+.gameover-player p.gameover-player-total {
     font-weight: bold;
-    margin-top: var(--spacing-small);
+    font-size: calc(1.1 * var(--font-size-text));
+}
+
+.gameover-player-total.score {
+    color: var(--color-highlight);
+    margin-top: var(--spacing-large);
+}
+
+.gameover-player-total.pollution {
+    color: var(--color-highlight);
+}
+
+.gameover-actions {
+    margin-top: 8rem;
+}
+
+.gameover-credits {
+    margin-top: var(--spacing-large);
+    font-size: var(--font-size-small);
+    color: var(--color-text);
+    opacity: var(--opacity-muted);
+    text-align: center;
+}
+
+.gameover-credits p {
+    margin: 0.2rem 0;
 }

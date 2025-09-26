@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "./app/hooks"
 import Card from "./Card"
-import { selectPlayers, endTurn, selectTurnOfPlayerId, YOUR_PLAYER_ID, selectPlayerById, selectGlobalPollution, selectRound, selectPlayerHovered } from "./app/gameSlice";
+import { selectPlayers, endTurn, selectTurnOfPlayerId, YOUR_PLAYER_ID, selectPlayerById, selectGlobalPollution, selectRound, selectPlayerHovered, selectStatus } from "./app/gameSlice";
 import { takeCard } from "./app/gameSlice";
 import Player from "./Player";
 import { shallowEqual } from "react-redux";
@@ -32,6 +32,7 @@ const Game: React.FC<GameProps> = () => {
   const currentPlayer = useAppSelector(state => selectPlayerById(state, turnOfPlayerId))
   const you = useAppSelector(state => selectPlayerById(state, YOUR_PLAYER_ID))
   const cardToTake = useBuyCardsAI(currentPlayer);
+  const isGameOver = useAppSelector(selectStatus) === 'over'
 
   const onCardClick = useCallback(
     (card: CardType) => {
@@ -130,7 +131,7 @@ const Game: React.FC<GameProps> = () => {
           <div className="game-hand" ref={gameHandRef}>
             <div className="game-hand-inner">
               {
-                playerHovered && playerHovered.id !== YOUR_PLAYER_ID && <div className="game-hand-overlay"></div>
+                ((playerHovered && playerHovered.id !== YOUR_PLAYER_ID) || (isGameOver)) && <div className="game-hand-overlay"></div>
               }
               {yourHand.map(card => (
                 <Card key={card.id} card={card} onClick={onCardClick} status={currentPlayer.balance >= card.cost ? "available": "not-available"} />
@@ -152,9 +153,11 @@ const Game: React.FC<GameProps> = () => {
           <div className="game-stat game-your-balance">Votre Argent<div className="number">{you.balance}</div></div>
           <div className="game-stat game-your-score">Votre Score<div className="number">{you.score}</div></div>
         </div>
-        <div className="game-end-turn" onClick={onEndTurnClick}>
-          <button>Fin du tour {round}</button>
-        </div>
+        {!isGameOver && 
+          <div className="game-end-turn" onClick={onEndTurnClick}>
+            <button>Fin du tour {round}</button>
+          </div>
+        }
       </div>
     </div>
   );
