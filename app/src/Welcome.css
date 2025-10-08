@@ -22,6 +22,7 @@
 }
 
 .welcome-title h1 {
+  font-family: var(--font-family-title);
   font-size: var(--font-size-title);
   margin-bottom: var(--spacing-title-margin-bottom);
   margin-bottom: 9rem;

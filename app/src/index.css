@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Cocogoose';
+  src: url('./fonts/cocogoose-pro.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* -------- COLORS : pink theme -------- */
   --pink-highlight: #ff006aff; /* Primary highlight (pink) with full opacity */
@@ -76,6 +83,7 @@
 
   /* -------- TYPOGRAPHY -------- */
   --font-family-base: "Open Sans", sans-serif;
+  --font-family-title: Cocogoose;
 
   --font-size-title: 2.5rem;
   --font-size-subtitle: 1.5rem;
