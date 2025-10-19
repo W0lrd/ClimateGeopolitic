@@ -31,7 +31,7 @@ const Welcome: React.FC<WelcomeProps> = () => {
         <div className="welcome-instructions">
           <p className="welcome-text">
 Bienvenue dans ce petit jeu pédagogique sur la géopolitique du climat. Dans celui-ci, vous incarnez les dirigeant·e·s d'un pays qui font des choix dans son industrialisation.
-Le jeu se déroule en une série de tours lors desquelles vous aurez le choix entre plusieurs cartes comme celle-ci :
+Le jeu se déroule en une série de tours lors desquels vous aurez le choix entre plusieurs cartes comme celle-ci :
           </p>
 
           <Card card={DECK[0]} status="available" />
